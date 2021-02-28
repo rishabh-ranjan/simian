@@ -1,0 +1,6 @@
+name	nprocs	args	trace size	deadlock	epochs	total epochs	unique epochs	repeated epochs	total generators	total time	scheduler time	processing time	solver time	misc time	
+ diffusion2d	 4	 2 2 1 e2 	 88	 no	 (2,1,16) (18,8,2) (1,0,5) 	 23	 3	 20	 9	 957	 710	 116	 102	 29	
+ diffusion2d	 4	 2 2 2 e2 	 150	 no	 (2,1,32) (18,8,3) (1,0,8) 	 43	 3	 40	 9	 1081	 689	 342	 41	 9	
+ diffusion2d	 4	 2 2 3 e2 	 212	 no	 (2,1,48) (18,8,4) (1,0,11) 	 63	 3	 60	 9	 1701	 764	 847	 41	 49	
+ diffusion2d	 4	 2 2 4 e2 	 274	 no	 (2,1,64) (18,8,5) (1,0,14) 	 83	 3	 80	 9	 3007	 1124	 1815	 40	 28	
+ diffusion2d	 4	 2 2 5 e2 	 336	 no	 (2,1,80) (18,8,6) (1,0,17) 	 103	 3	 100	 9	 4755	 1325	 3360	 42	 28	

@@ -1,0 +1,9 @@
+name	nprocs	args	trace size	deadlock	epochs	total epochs	unique epochs	repeated epochs	total generators	total time	scheduler time	processing time	solver time	misc time	
+ floyd-dl	 8	 1 e4 	 28	 no	 (2,1,14) 	 14	 1	 13	 1	 688	 599	 20	 7	 62	
+ floyd-dl	 8	 2 e4 	 42	 yes	 (16,0,1) (4,1,6) (2,1,1) 	 8	 3	 5	 2	 624	 528	 35	 25	 36	
+ floyd-dl	 8	 3 e4 	 56	 yes	 (18,0,1) (6,2,5) (8,0,1) 	 7	 3	 4	 2	 530	 403	 40	 30	 57	
+ floyd-dl	 8	 4 e4 	 70	 yes	 (20,0,1) (8,3,4) (18,0,1) 	 6	 3	 3	 3	 669	 551	 42	 37	 39	
+ floyd-dl	 8	 5 e4 	 84	 yes	 (22,0,1) (10,4,3) (32,0,1) 	 5	 3	 2	 4	 717	 567	 51	 49	 50	
+ floyd-dl	 8	 6 e4 	 98	 yes	 (12,5,2) (24,0,1) (50,0,1) 	 4	 3	 1	 5	 722	 533	 59	 84	 46	
+ floyd-dl	 8	 7 e4 	 112	 yes	 (26,0,1) (14,6,1) (72,0,1) 	 3	 3	 0	 6	 1010	 668	 71	 211	 60	
+ floyd-dl	 8	 8 e4 	 126	 yes	 (28,0,1) (98,0,1) 	 2	 2	 0	 0	 1890	 646	 82	 1138	 24	

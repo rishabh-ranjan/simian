@@ -1,0 +1,242 @@
+AutoGen Definitions options;
+prog-name     	    = isp;
+prog-title    	    = "isp: In-Situ Partial Order";
+long-opts;	    
+version		    = "0.2.0";
+copyright = {
+	  date	    = "1-27-2009";
+	  owner	    = "University of Utah";
+	  type	    = "note";
+	  text	    = "Copyright (C) 2009 -- please see LICENSE for details.";
+	  eaddr	    = "isp-dev@cs.utah.edu";
+};
+	  
+argument	    = "profiled_executable [executable args]";
+
+explain		    =  "exit codes:
+ 		    0    Model checking complete with no errors detected.
+		    1    Model checking complete with deadlock detected.
+		    2    ISP help displayed.
+		    3    A process failed an assertion.
+		    4    A process exited with MPI_Abort.
+		    5    A process called an MPI function with an invalid rank.
+		    11   Unable to start profiled MPI program with mpiexec.
+		    12   Unable to use WINSOCK.
+		    13   Unable to open socket.
+		    14   Unable to bind to socket.
+		    15   Unable to listen on socket.
+		    16   Unable to accept connections on socket.
+		    17   Error reading from socket.
+		    20   Unable to open specified log file.
+		    21   Transitions different between interleavings.
+		    22   Received an empty buffer. (Profiled code might have crashed.)";
+
+flag = {
+    name            = kBuffering;
+    value           = k;
+    arg-type        = number;
+    arg-default     = 1;
+    arg-range       = "1->";
+    descrip         = "K-Buffering value";
+};
+
+flag = {
+    name		    = numProcs;
+    value     		= n;
+    arg-type  		= number;
+    arg-default 	= 2;
+    arg-range		= "1->";
+    descrip   		= "Number of processes";
+};
+
+flag = {
+    name		= encoding;
+    value     		= E;
+    arg-type  		= number;
+    arg-default 	= 0;
+    arg-range		= "0->2";
+    descrip   		= "SAT encoding type: 0 for FM, 1 for SPO, 2 for MultiReceives";
+};
+
+flag = {
+    name		= dimacs;
+    value     		= D;
+    arg-type            = boolean;
+    arg-default         = false;
+    descrip   		= "Output dimacs file";
+};
+
+flag = {
+    name		= show_formula;
+    value               = C;
+    descrip   		= "Show verification conditions file";
+};
+
+flag = {
+    name		= minisat;
+    descrip   		= "Use minisat tool to solve";
+    flags-cant          = lingeling;
+};
+
+flag = {
+     name               = lingeling;
+    descrip   		= "Use minisat tool to solve";	
+    flags-cant          = minisat;
+};
+
+flag = {
+    name		= port;
+    value     		= p;
+    arg-type  		= number;
+    arg-default 	= 9999;
+    arg-range		="1->99999";
+    descrip   		= "Listening port";
+};
+
+flag = {
+     name		= host;
+     value		= h;
+     arg-type		= string;
+     arg-default	= "localhost";
+     descrip		= "Hostname where ISP resides";
+};
+
+flag = {
+     name		= us;
+     value		= x;
+     ifndef		= WIN_32;
+     descrip		= "Use unix sockets";
+};
+
+flag = {
+     name		= block;
+     value		= b;
+     descrip		= "Treat sends as blocking w/o buffering";
+     flags-cant		= noblock;
+};
+
+flag = {
+     name		= noblock;
+     value		= g;
+     descrip		= "Sends use buffering of MPI subsystem (default)";
+     flags-cant		= block;
+};
+
+flag = {
+     name		= logfile;
+     value		= l;
+     arg-type		= string;
+     descrip		= "Location of interleaving log for UI";
+};
+
+flag = {
+     name		= mpicalls;
+     value		= m;
+     descrip		= "Output # mpi calls trapped per rank";
+};
+
+flag = {
+     name		= verbose;
+     value		= O;
+     descrip		= "Always output all transition lists";
+};
+
+flag = {
+     name		= quiet;
+     value		= q;
+     descrip		= "Output no information save return code";
+     flags-cant		= verbose;
+};
+
+flag = {
+     name		= rpt-progress;
+     value		= r;
+     arg-type		= number;
+     descrip		= "Output progress every n MPI calls";
+};
+
+flag = {
+     name		= distributed;
+     value		= d;
+     descrip		= "Use to launch profiled proc manually";
+};
+
+flag = {
+     name		= fibopt;
+     ifdef		= FIB;
+     value		= f;
+     descrip		= "Enables irrelevant barrier detection";
+};
+
+flag = {
+     name		= view-prog-out-only;
+     value		= P;
+     descrip		= "ISP generates no output, but the code being analyzed does";
+};
+
+flag = {
+     name		= disable-omp;
+     ifdef		= USE_OPENMP;
+     value		= o;
+     descrip		= "Disables OpenMP.  No effect unless ./configure --enable-openmp";
+};
+
+flag = {
+     name		= exp-mode;
+     value		= e;
+     arg-type		= keyword;
+     keyword		= "all";
+     keyword		= "random";
+     keyword 		= "left_most";
+     arg-default	= "all";
+     descrip		= "Choose which interleavings to explore [all, random, left_most]";
+};
+
+flag = {
+     name		= env;
+     value		= s;
+     descrip		= "Use environment to set client options (Windows)";
+}; 
+
+flag = {
+     name		= exp-some;
+     value		= y;
+     arg-type		= number;
+     descrip		= "Explore random K choices at non-determ. points";
+};
+
+flag = {
+     name		= stop-at-deadlock;
+     value		= z;
+     arg-type		= boolean;
+     arg-default		= false;
+     descrip		= "When enabled, ISP will stop at deadlock";
+};
+
+flag = {
+    name = debug-sched;
+    descrip = "Enable scheduler debug messages";
+    ifdef = CONFIG_DEBUG_SCHED;
+};
+
+flag = {
+    name = no-ample-set-fix;
+    descrip = "Disable the ample set fix";
+    ifdef = CONFIG_OPTIONAL_AMPLE_SET_FIX;
+    value = a;
+};
+
+flag = {
+    name = bound;
+    value = B;
+    descrip = "Enable bounded mixing";
+//    ifdef = CONFIG_BOUNDED_MIXING;
+    arg-type = number;
+};
+
+flag = {
+     name		= fprs;
+     value		= F;
+     descrip    = "Focus Plus Random Sampling";
+};
+

@@ -1,0 +1,15 @@
+name: prefix_sum
+nprocs: 32
+args: 1024 
+trace size: 286
+deadlock: no
+epochs: (2,1,31) (1,0,38) 
+total epochs: 69
+unique epochs: 2
+repeated epochs: 67
+total generators: 1
+total time: 8164
+scheduler time: 7812
+processing time: 44
+solver time: 15
+misc time: 293

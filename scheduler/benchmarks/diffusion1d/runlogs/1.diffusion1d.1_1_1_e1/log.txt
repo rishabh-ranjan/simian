@@ -1,0 +1,29 @@
+
+[Sun Jan 31 2021 11:08:05.083] argc: 8
+[Sun Jan 31 2021 11:08:05.083] argv[ 0 ]: simian
+[Sun Jan 31 2021 11:08:05.083] argv[ 1 ]: -n
+[Sun Jan 31 2021 11:08:05.083] argv[ 2 ]: 1
+[Sun Jan 31 2021 11:08:05.083] argv[ 3 ]: ./i_diffusion1d
+[Sun Jan 31 2021 11:08:05.083] argv[ 4 ]: 1
+[Sun Jan 31 2021 11:08:05.083] argv[ 5 ]: 1
+[Sun Jan 31 2021 11:08:05.083] argv[ 6 ]: 1
+[Sun Jan 31 2021 11:08:05.083] argv[ 7 ]: e1
+[Sun Jan 31 2021 11:08:05.083] instantiate scheduler...
+[Sun Jan 31 2021 11:08:05.109] 
+
+[Sun Jan 31 2021 11:08:05.109] interleaving: 1
+[Sun Jan 31 2021 11:08:05.109] generate interleaving...
+[Sun Jan 31 2021 11:08:05.110] start trace verification...
+[Sun Jan 31 2021 11:08:05.111] generate Hermes constraints...
+[Sun Jan 31 2021 11:08:05.120] start Simian verifier...
+[Sun Jan 31 2021 11:08:05.120] compute m+...
+[Sun Jan 31 2021 11:08:05.120] epoch separation...
+[Sun Jan 31 2021 11:08:05.120] 
+[Sun Jan 31 2021 11:08:05.120] extract epoch...
+[Sun Jan 31 2021 11:08:05.120] epochs exhausted
+[Sun Jan 31 2021 11:08:05.120] process graph written in: runlogs/1.diffusion1d.1_1_1_e1/procs.dot
+[Sun Jan 31 2021 11:08:05.121] epoch graph written in: runlogs/1.diffusion1d.1_1_1_e1/epochs.dot
+[Sun Jan 31 2021 11:08:05.121] Simian verfication result: deadlock free
+[Sun Jan 31 2021 11:08:05.121] change conditionals...
+[Sun Jan 31 2021 11:08:05.121] path conditionals exhausted
+[Sun Jan 31 2021 11:08:05.122] verdict: deadlock free

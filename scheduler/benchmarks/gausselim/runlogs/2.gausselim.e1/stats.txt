@@ -1,0 +1,15 @@
+name: gausselim
+nprocs: 2
+args: e1 
+trace size: 18
+deadlock: no
+epochs: (2,1,2) (1,0,8) 
+total epochs: 10
+unique epochs: 2
+repeated epochs: 8
+total generators: 1
+total time: 486
+scheduler time: 431
+processing time: 26
+solver time: 14
+misc time: 15

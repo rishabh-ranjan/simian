@@ -1,0 +1,5 @@
+export PATH="/usr/bin":$PATH
+if [ ! -x "/usr/bin/mpiexec" ]; then
+    export USE_MPIRUN="true"
+fi
+exec "/usr/local/bin/simian" $*

@@ -1,0 +1,72 @@
+/*
+ * Copyright (c) 2008-2009
+ *
+ * School of Computing, University of Utah,
+ * Salt Lake City, UT 84112, USA
+ *
+ * and the Gauss Group
+ * http://www.cs.utah.edu/formal_verification
+ *
+ * See LICENSE for licensing information
+ */
+
+#ifdef _ASSERT_H
+
+#undef _ASSERT_H
+#undef assert
+#undef assert_perror
+#undef __assert
+
+#endif /* assert.h */
+
+#define _ASSERT_H
+
+/* void assert (int expression);
+
+   If NDEBUG is defined, do nothing.
+   If not, and EXPRESSION is zero, print an error message and abort.  */
+
+#ifdef NDEBUG
+
+#define assert(expr)          ((void)(0))
+#define assert_perror(errnum) ((void)(0))
+
+#else /* Not NDEBUG */
+
+#ifndef _ASSERT_H_DECLS
+#define _ASSERT_H_DECLS
+
+#ifdef  __cplusplus
+extern "C" {
+#endif
+
+/* This sends an "Assertion failed" message to the scheduler. */
+extern void ISP_Assert_fail (const char *assertion, const char *function,
+                             const char *file, int line);
+   
+/* Likewise, but sends the error text for ERRNUM.  */
+extern void ISP_Assert_perror_fail (int errnum, const char *function,
+                                    const char *__file, int line);
+
+#ifdef  __cplusplus
+}
+#endif
+
+#endif /* Not _ASSERT_H_DECLS */
+
+#ifndef __STRING
+#define __STRING(x) #x
+#endif
+
+#define __assert(assertion, file, line)                                         \
+  ISP_Assert_fail (assertion, "???", file, line)
+
+#define assert(expr)                                                            \
+  ((expr)                                                                       \
+   ? ((void)(0))                                                                \
+   : ISP_Assert_fail (__STRING(expr), __PRETTY_FUNCTION__, __FILE__, __LINE__))
+
+#define assert_perror(errnum)                                                   \
+  ISP_Assert_perror_fail (errnum, __PRETTY_FUNCTION__, __FILE__, __LINE__)
+
+#endif /* NDEBUG */

@@ -1,0 +1,7 @@
+[
+    {
+        "command": "c++ -c -I/usr/include/mpi -I/usr/lib/openmpi/include -I/usr/lib/openmpi/include/openmpi -I/home/dhriti/clang+llvm-3.8.0-x86_64-linux-gnu-debian8/lib/clang/3.8.0/include/ -pthread MonteFromNet.cpp", 
+        "directory": "/home/dhriti/Dropbox/mopperExtension/clangTool", 
+        "file": "/home/dhriti/Dropbox/mopperExtension/clangTool/MonteFromNet.cpp"
+    }
+]

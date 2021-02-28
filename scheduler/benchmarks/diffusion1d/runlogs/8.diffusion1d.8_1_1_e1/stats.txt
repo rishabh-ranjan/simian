@@ -1,0 +1,15 @@
+name: diffusion1d
+nprocs: 8
+args: 8 1 1 e1 
+trace size: 56
+deadlock: no
+epochs: (2,1,28) 
+total epochs: 28
+unique epochs: 1
+repeated epochs: 27
+total generators: 1
+total time: 576
+scheduler time: 521
+processing time: 21
+solver time: 7
+misc time: 27

@@ -1,0 +1,246 @@
+
+[Sun Jan 31 2021 23:42:32.345] argc: 6
+[Sun Jan 31 2021 23:42:32.345] argv[ 0 ]: simian
+[Sun Jan 31 2021 23:42:32.345] argv[ 1 ]: -n
+[Sun Jan 31 2021 23:42:32.345] argv[ 2 ]: 8
+[Sun Jan 31 2021 23:42:32.345] argv[ 3 ]: ./i_floyd
+[Sun Jan 31 2021 23:42:32.345] argv[ 4 ]: 7
+[Sun Jan 31 2021 23:42:32.345] argv[ 5 ]: e2
+[Sun Jan 31 2021 23:42:32.345] instantiate scheduler...
+[Sun Jan 31 2021 23:42:32.848] 
+
+[Sun Jan 31 2021 23:42:32.848] interleaving: 1
+[Sun Jan 31 2021 23:42:32.848] generate interleaving...
+[Sun Jan 31 2021 23:42:33.399] start trace verification...
+[Sun Jan 31 2021 23:42:33.400] generate Hermes constraints...
+[Sun Jan 31 2021 23:42:33.438] start Simian verifier...
+[Sun Jan 31 2021 23:42:33.438] compute m+...
+[Sun Jan 31 2021 23:42:33.439] epoch separation...
+[Sun Jan 31 2021 23:42:33.439] 
+[Sun Jan 31 2021 23:42:33.439] extract epoch...
+[Sun Jan 31 2021 23:42:33.439] verify epoch...
+[Sun Jan 31 2021 23:42:33.439] epoch: 0
+[Sun Jan 31 2021 23:42:33.439] epoch size: 1
+[Sun Jan 31 2021 23:42:33.439] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.439] check epoch cache...
+[Sun Jan 31 2021 23:42:33.439] fresh epoch
+[Sun Jan 31 2021 23:42:33.439] create SMT formula...
+[Sun Jan 31 2021 23:42:33.446] detect and encode symmetry...
+[Sun Jan 31 2021 23:42:33.446] symmetry generators: 0
+[Sun Jan 31 2021 23:42:33.446] invoke SMT solver...
+[Sun Jan 31 2021 23:42:33.453] solver stats:
+(:max-memory         8.13
+ :memory             7.83
+ :mk-bool-var        5
+ :num-allocs         3293638
+ :rlimit-count       68
+ :sat-mk-clause-2ary 1
+ :sat-mk-var         2
+ :sat-units          2)
+[Sun Jan 31 2021 23:42:33.453] formula is unsat
+[Sun Jan 31 2021 23:42:33.453] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.453] 
+[Sun Jan 31 2021 23:42:33.453] extract epoch...
+[Sun Jan 31 2021 23:42:33.453] verify epoch...
+[Sun Jan 31 2021 23:42:33.453] epoch: 1
+[Sun Jan 31 2021 23:42:33.453] epoch size: 1
+[Sun Jan 31 2021 23:42:33.453] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.453] check epoch cache...
+[Sun Jan 31 2021 23:42:33.453] found in cache
+[Sun Jan 31 2021 23:42:33.453] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.453] 
+[Sun Jan 31 2021 23:42:33.453] extract epoch...
+[Sun Jan 31 2021 23:42:33.453] verify epoch...
+[Sun Jan 31 2021 23:42:33.453] epoch: 2
+[Sun Jan 31 2021 23:42:33.453] epoch size: 1
+[Sun Jan 31 2021 23:42:33.453] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.453] check epoch cache...
+[Sun Jan 31 2021 23:42:33.453] found in cache
+[Sun Jan 31 2021 23:42:33.453] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.453] 
+[Sun Jan 31 2021 23:42:33.453] extract epoch...
+[Sun Jan 31 2021 23:42:33.453] verify epoch...
+[Sun Jan 31 2021 23:42:33.453] epoch: 3
+[Sun Jan 31 2021 23:42:33.453] epoch size: 1
+[Sun Jan 31 2021 23:42:33.454] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.454] check epoch cache...
+[Sun Jan 31 2021 23:42:33.454] found in cache
+[Sun Jan 31 2021 23:42:33.454] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.454] 
+[Sun Jan 31 2021 23:42:33.454] extract epoch...
+[Sun Jan 31 2021 23:42:33.454] verify epoch...
+[Sun Jan 31 2021 23:42:33.454] epoch: 4
+[Sun Jan 31 2021 23:42:33.454] epoch size: 1
+[Sun Jan 31 2021 23:42:33.454] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.454] check epoch cache...
+[Sun Jan 31 2021 23:42:33.454] found in cache
+[Sun Jan 31 2021 23:42:33.454] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.454] 
+[Sun Jan 31 2021 23:42:33.454] extract epoch...
+[Sun Jan 31 2021 23:42:33.454] verify epoch...
+[Sun Jan 31 2021 23:42:33.454] epoch: 5
+[Sun Jan 31 2021 23:42:33.454] epoch size: 1
+[Sun Jan 31 2021 23:42:33.454] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.454] check epoch cache...
+[Sun Jan 31 2021 23:42:33.454] found in cache
+[Sun Jan 31 2021 23:42:33.454] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.454] 
+[Sun Jan 31 2021 23:42:33.454] extract epoch...
+[Sun Jan 31 2021 23:42:33.454] verify epoch...
+[Sun Jan 31 2021 23:42:33.454] epoch: 6
+[Sun Jan 31 2021 23:42:33.454] epoch size: 1
+[Sun Jan 31 2021 23:42:33.454] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.454] check epoch cache...
+[Sun Jan 31 2021 23:42:33.454] found in cache
+[Sun Jan 31 2021 23:42:33.454] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.454] 
+[Sun Jan 31 2021 23:42:33.454] extract epoch...
+[Sun Jan 31 2021 23:42:33.454] verify epoch...
+[Sun Jan 31 2021 23:42:33.454] epoch: 7
+[Sun Jan 31 2021 23:42:33.454] epoch size: 1
+[Sun Jan 31 2021 23:42:33.454] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.454] check epoch cache...
+[Sun Jan 31 2021 23:42:33.454] found in cache
+[Sun Jan 31 2021 23:42:33.454] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.454] 
+[Sun Jan 31 2021 23:42:33.454] extract epoch...
+[Sun Jan 31 2021 23:42:33.454] verify epoch...
+[Sun Jan 31 2021 23:42:33.454] epoch: 8
+[Sun Jan 31 2021 23:42:33.454] epoch size: 1
+[Sun Jan 31 2021 23:42:33.454] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.454] check epoch cache...
+[Sun Jan 31 2021 23:42:33.454] found in cache
+[Sun Jan 31 2021 23:42:33.454] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.454] 
+[Sun Jan 31 2021 23:42:33.454] extract epoch...
+[Sun Jan 31 2021 23:42:33.454] verify epoch...
+[Sun Jan 31 2021 23:42:33.454] epoch: 9
+[Sun Jan 31 2021 23:42:33.454] epoch size: 108
+[Sun Jan 31 2021 23:42:33.454] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.454] check epoch cache...
+[Sun Jan 31 2021 23:42:33.455] fresh epoch
+[Sun Jan 31 2021 23:42:33.455] create SMT formula...
+[Sun Jan 31 2021 23:42:33.465] detect and encode symmetry...
+[Sun Jan 31 2021 23:42:33.465] symmetry generators: 0
+[Sun Jan 31 2021 23:42:33.465] invoke SMT solver...
+[Sun Jan 31 2021 23:42:33.657] solver stats:
+(:added-eqs           29094
+ :arith-add-rows      74478
+ :arith-assert-diseq  107
+ :arith-assert-lower  3043
+ :arith-assert-upper  3258
+ :arith-bound-prop    1537
+ :arith-conflicts     30
+ :arith-eq-adapter    216
+ :arith-offset-eqs    19
+ :arith-pivots        2282
+ :binary-propagations 180727
+ :conflicts           2497
+ :decisions           6443
+ :del-clause          127
+ :eliminated-vars     108
+ :max-memory          12.19
+ :memory              8.98
+ :minimized-lits      10507
+ :mk-bool-var         1362
+ :mk-clause           4206
+ :num-allocs          21852935
+ :num-checks          1
+ :pb-conflicts        65
+ :pb-predicates       72
+ :pb-propagations     5139
+ :pb-resolves         65
+ :propagations        268142
+ :restarts            20
+ :rlimit-count        4540241)
+[Sun Jan 31 2021 23:42:33.657] formula is unsat
+[Sun Jan 31 2021 23:42:33.657] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.657] 
+[Sun Jan 31 2021 23:42:33.657] extract epoch...
+[Sun Jan 31 2021 23:42:33.657] verify epoch...
+[Sun Jan 31 2021 23:42:33.657] epoch: 10
+[Sun Jan 31 2021 23:42:33.657] epoch size: 20
+[Sun Jan 31 2021 23:42:33.658] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.658] check epoch cache...
+[Sun Jan 31 2021 23:42:33.658] fresh epoch
+[Sun Jan 31 2021 23:42:33.658] create SMT formula...
+[Sun Jan 31 2021 23:42:33.665] detect and encode symmetry...
+[Sun Jan 31 2021 23:42:33.666] symmetry generators: 6
+[Sun Jan 31 2021 23:42:33.666] invoke SMT solver...
+[Sun Jan 31 2021 23:42:33.683] solver stats:
+(:added-eqs           198
+ :arith-add-rows      187
+ :arith-assert-lower  14
+ :arith-assert-upper  26
+ :arith-bound-prop    78
+ :arith-eq-adapter    49
+ :arith-offset-eqs    2
+ :arith-pivots        19
+ :binary-propagations 821
+ :conflicts           17
+ :decisions           98
+ :eliminated-vars     98
+ :max-memory          12.19
+ :memory              8.97
+ :minimized-lits      17
+ :mk-bool-var         375
+ :mk-clause           638
+ :num-allocs          41232343
+ :num-checks          1
+ :pb-conflicts        3
+ :pb-predicates       14
+ :pb-propagations     51
+ :pb-resolves         2
+ :propagations        1466
+ :rlimit-count        4590565)
+[Sun Jan 31 2021 23:42:33.683] formula is unsat
+[Sun Jan 31 2021 23:42:33.683] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.683] 
+[Sun Jan 31 2021 23:42:33.683] extract epoch...
+[Sun Jan 31 2021 23:42:33.683] verify epoch...
+[Sun Jan 31 2021 23:42:33.683] epoch: 11
+[Sun Jan 31 2021 23:42:33.683] epoch size: 17
+[Sun Jan 31 2021 23:42:33.683] construct program graph for epoch...
+[Sun Jan 31 2021 23:42:33.684] check epoch cache...
+[Sun Jan 31 2021 23:42:33.684] fresh epoch
+[Sun Jan 31 2021 23:42:33.684] create SMT formula...
+[Sun Jan 31 2021 23:42:33.691] detect and encode symmetry...
+[Sun Jan 31 2021 23:42:33.691] symmetry generators: 5
+[Sun Jan 31 2021 23:42:33.692] invoke SMT solver...
+[Sun Jan 31 2021 23:42:33.706] solver stats:
+(:added-eqs           151
+ :arith-add-rows      119
+ :arith-assert-lower  12
+ :arith-assert-upper  22
+ :arith-bound-prop    52
+ :arith-eq-adapter    36
+ :arith-offset-eqs    3
+ :arith-pivots        16
+ :binary-propagations 708
+ :conflicts           23
+ :decisions           37
+ :eliminated-vars     72
+ :max-memory          12.19
+ :memory              8.94
+ :minimized-lits      14
+ :mk-bool-var         280
+ :mk-clause           460
+ :num-allocs          65373125
+ :num-checks          1
+ :pb-conflicts        2
+ :pb-predicates       12
+ :pb-propagations     55
+ :pb-resolves         2
+ :propagations        1386
+ :rlimit-count        4627234)
+[Sun Jan 31 2021 23:42:33.706] formula is unsat
+[Sun Jan 31 2021 23:42:33.706] deadlock free epoch
+[Sun Jan 31 2021 23:42:33.706] 
+[Sun Jan 31 2021 23:42:33.706] extract epoch...
+[Sun Jan 31 2021 23:42:33.706] epochs exhausted
+[Sun Jan 31 2021 23:42:33.707] process graph written in: runlogs/8.floyd.7_e2/procs.dot
+[Sun Jan 31 2021 23:42:33.707] epoch graph written in: runlogs/8.floyd.7_e2/epochs.dot
+[Sun Jan 31 2021 23:42:33.707] Simian verfication result: deadlock free
+[Sun Jan 31 2021 23:42:33.707] change conditionals...
+[Sun Jan 31 2021 23:42:33.707] path conditionals exhausted
+[Sun Jan 31 2021 23:42:33.707] verdict: deadlock free

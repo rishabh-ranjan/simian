@@ -1,0 +1,13 @@
+PROFILER_DIR = profiler
+SCHEDULER_DIR = scheduler
+UI_DIR = UI
+
+all:
+	$(MAKE) -C $(PROFILER_DIR)
+	$(MAKE) -C $(SCHEDULER_DIR)
+	$(MAKE) -C $(UI_DIR)
+
+clean:
+	$(MAKE) -C $(PROFILER_DIR) clean
+	$(MAKE) -C $(SCHEDULER_DIR) clean
+	$(MAKE) -C $(UI_DIR) clean

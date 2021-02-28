@@ -1,0 +1,39 @@
+CXXFILES = Socket.cpp ServerSocket.cpp MpiProc.cpp Envelope.cpp\
+	   name2id.cpp Scheduler.cpp Transition.cpp TransitionList.cpp \
+	   InterleavingTree.cpp main.cpp
+LDFLAGS = -L/usr/lib/camsource -pthread -static ../solver/solver-src/solvers.a \
+	  ../solver/big-int/big-int.a 
+CFLAGS = -c -O2 -Wall -DFIB -static -I ../solver
+
+#GMONFLAGS = -pg
+#GDBFLAGS = -g
+
+CC = g++
+EXECUTABLE = isp
+OBJS = $(CXXFILES:.cpp=.o)
+DEPS = .deps
+
+# Enable OpenMP for GCC >= 4.2
+GCC_VERSION := $(shell $(CC) --version | awk -F" " '{ printf $$3 }' | awk -F"." '{ printf $$1 "0" $$2 }')
+USE_OPENMP := $(shell [ $(GCC_VERSION) -ge 402 ] && echo "Y")
+ifeq ($(USE_OPENMP),Y)
+	LDFLAGS += -fopenmp
+	CFLAGS += -DUSE_OPENMP -fopenmp
+endif
+
+all: $(EXECUTABLE)
+
+
+$(EXECUTABLE): $(OBJS)
+	$(CC) $(GMONFLAGS) $(GDBFLAGS) $(LDFLAGS) $(OBJS) -o $@
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) $(GMONFLAGS) $(GDBFLAGS) $< -o $@
+
+$(DEPS): $(CXXFILES)
+	$(CC) -MM $(CXXFILES) > $@
+
+clean:
+	rm -rf $(EXECUTABLE) $(OBJS) $(DEPS)
+
+include .deps

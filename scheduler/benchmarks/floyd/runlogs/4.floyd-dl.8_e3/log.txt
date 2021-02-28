@@ -1,0 +1,107 @@
+
+[Sun Jan 31 2021 23:38:22.388] argc: 6
+[Sun Jan 31 2021 23:38:22.388] argv[ 0 ]: simian
+[Sun Jan 31 2021 23:38:22.388] argv[ 1 ]: -n
+[Sun Jan 31 2021 23:38:22.388] argv[ 2 ]: 4
+[Sun Jan 31 2021 23:38:22.388] argv[ 3 ]: ./i_floyd-dl
+[Sun Jan 31 2021 23:38:22.388] argv[ 4 ]: 8
+[Sun Jan 31 2021 23:38:22.388] argv[ 5 ]: e3
+[Sun Jan 31 2021 23:38:22.388] instantiate scheduler...
+[Sun Jan 31 2021 23:38:22.556] 
+
+[Sun Jan 31 2021 23:38:22.556] interleaving: 1
+[Sun Jan 31 2021 23:38:22.556] generate interleaving...
+[Sun Jan 31 2021 23:38:22.589] start trace verification...
+[Sun Jan 31 2021 23:38:22.590] generate Hermes constraints...
+[Sun Jan 31 2021 23:38:22.614] start Simian verifier...
+[Sun Jan 31 2021 23:38:22.615] compute m+...
+[Sun Jan 31 2021 23:38:22.615] epoch separation...
+[Sun Jan 31 2021 23:38:22.615] 
+[Sun Jan 31 2021 23:38:22.615] extract epoch...
+[Sun Jan 31 2021 23:38:22.615] verify epoch...
+[Sun Jan 31 2021 23:38:22.615] epoch: 0
+[Sun Jan 31 2021 23:38:22.615] epoch size: 36
+[Sun Jan 31 2021 23:38:22.615] construct program graph for epoch...
+[Sun Jan 31 2021 23:38:22.615] check epoch cache...
+[Sun Jan 31 2021 23:38:22.615] fresh epoch
+[Sun Jan 31 2021 23:38:22.615] create SMT formula...
+[Sun Jan 31 2021 23:38:22.624] detect and encode symmetry...
+[Sun Jan 31 2021 23:38:22.624] symmetry generators: 0
+[Sun Jan 31 2021 23:38:22.624] invoke SMT solver...
+[Sun Jan 31 2021 23:38:22.659] solver stats:
+(:added-eqs           4070
+ :arith-add-rows      4042
+ :arith-assert-diseq  222
+ :arith-assert-lower  468
+ :arith-assert-upper  889
+ :arith-bound-prop    351
+ :arith-conflicts     22
+ :arith-eq-adapter    99
+ :arith-offset-eqs    482
+ :arith-pivots        254
+ :binary-propagations 19171
+ :conflicts           336
+ :decisions           682
+ :del-clause          103
+ :eliminated-vars     36
+ :max-memory          8.43
+ :memory              7.22
+ :minimized-lits      1010
+ :mk-bool-var         615
+ :mk-clause           1017
+ :num-allocs          4892305
+ :num-checks          1
+ :pb-conflicts        11
+ :pb-predicates       36
+ :pb-propagations     721
+ :pb-resolves         11
+ :propagations        28376
+ :restarts            3
+ :rlimit-count        212196)
+[Sun Jan 31 2021 23:38:22.659] formula is unsat
+[Sun Jan 31 2021 23:38:22.659] deadlock free epoch
+[Sun Jan 31 2021 23:38:22.659] 
+[Sun Jan 31 2021 23:38:22.659] extract epoch...
+[Sun Jan 31 2021 23:38:22.659] verify epoch...
+[Sun Jan 31 2021 23:38:22.659] epoch: 1
+[Sun Jan 31 2021 23:38:22.659] epoch size: 18
+[Sun Jan 31 2021 23:38:22.659] construct program graph for epoch...
+[Sun Jan 31 2021 23:38:22.659] check epoch cache...
+[Sun Jan 31 2021 23:38:22.659] fresh epoch
+[Sun Jan 31 2021 23:38:22.659] create SMT formula...
+[Sun Jan 31 2021 23:38:22.667] detect and encode symmetry...
+[Sun Jan 31 2021 23:38:22.667] symmetry generators: 0
+[Sun Jan 31 2021 23:38:22.667] invoke SMT solver...
+[Sun Jan 31 2021 23:38:22.687] solver stats:
+(:added-eqs           268
+ :arith-add-rows      586
+ :arith-assert-diseq  15
+ :arith-assert-lower  42
+ :arith-assert-upper  67
+ :arith-bound-prop    174
+ :arith-conflicts     2
+ :arith-eq-adapter    54
+ :arith-offset-eqs    37
+ :arith-pivots        45
+ :binary-propagations 1227
+ :conflicts           25
+ :decisions           68
+ :eliminated-vars     18
+ :final-checks        1
+ :max-memory          8.43
+ :memory              7.21
+ :minimized-lits      7
+ :mk-bool-var         328
+ :mk-clause           378
+ :num-allocs          15433179
+ :num-checks          1
+ :pb-predicates       18
+ :pb-propagations     51
+ :propagations        1677
+ :rlimit-count        254581)
+[Sun Jan 31 2021 23:38:22.687] formula is sat
+[Sun Jan 31 2021 23:38:22.687] deadlock present in epoch
+[Sun Jan 31 2021 23:38:22.687] process graph written in: runlogs/4.floyd-dl.8_e3/procs.dot
+[Sun Jan 31 2021 23:38:22.687] epoch graph written in: runlogs/4.floyd-dl.8_e3/epochs.dot
+[Sun Jan 31 2021 23:38:22.687] Simian verfication result: deadlock present
+[Sun Jan 31 2021 23:38:22.687] verdict: deadlock present

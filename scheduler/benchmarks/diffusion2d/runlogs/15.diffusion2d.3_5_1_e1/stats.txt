@@ -1,0 +1,15 @@
+name: diffusion2d
+nprocs: 15
+args: 3 5 1 e1 
+trace size: 363
+deadlock: no
+epochs: (84,41,1) (2,1,60) (84,41,1) (1,0,5) 
+total epochs: 67
+unique epochs: 4
+repeated epochs: 63
+total generators: 83
+total time: 15969
+scheduler time: 2672
+processing time: 10395
+solver time: 2880
+misc time: 22

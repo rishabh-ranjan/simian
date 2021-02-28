@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# Copyright (c) 2008-2009
+#
+# School of Computing, University of Utah,
+# Salt Lake City, UT 84112, USA
+#
+# and the Gauss Group
+# http://www.cs.utah.edu/formal_verification
+#
+# See LICENSE for licensing information
+#
+
+export PATH="@MPI_BINDIR@":$PATH
+if [ ! -x "@MPI_BINDIR@/mpiexec" ]; then
+    export USE_MPIRUN="true"
+fi
+exec "@BINDIR@/isp.exe" $*

@@ -1,0 +1,23 @@
+CC = mpicc
+CFLAGS = -c -Wall -O2
+LIB = libprof.a
+SOURCES = Client.c HashMap.c HashMap_comm.c Profiler.c
+OBJS = $(SOURCES:.c=.o)
+DEPS = .deps
+
+
+all: $(LIB)
+
+$(LIB): $(OBJS)
+	ar rvs $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) $< -o $@
+
+$(DEPS): $(SOURCES)
+	$(CC) -MM $? > $@
+
+clean:
+	rm -rf $(OBJS) $(LIB) $(DEPS)
+
+include $(DEPS)

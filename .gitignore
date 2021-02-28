@@ -1,0 +1,11 @@
+*.class
+*.o
+*.lo
+*.log
+*.la
+*.so
+*.so.*
+clangTool/clang+llvm-3.8.0-x86_64-linux-gnu-debian8
+scheduler/simian-core/bliss-0.73
+.*
+!/.gitignore

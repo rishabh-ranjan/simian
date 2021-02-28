@@ -1,0 +1,38 @@
+JC = javac
+JAR = jar
+.SUFFIXES: .java .class
+
+.java.class:
+	$(JC) -source 1.5 -target 1.5 -classpath ".:lib/*"  $*.java
+
+CLASSES = \
+	Data/GlobalStructure.java \
+	Data/Transition.java \
+	Data/Interleavings.java \
+	Data/InterCBTemplate.java \
+	Parser/Parser.java \
+	Graph/ISPGraphModel.java \
+	Graph/SourceView.java \
+	Graph/MyGraphMouseListener.java \
+	Graph/DrawGraph.java \
+	Graph/drawIntraCB.java \
+	Graph/drawInterCB.java \
+	Graph/displayIntraCB.java \
+	UI/ispMainUI.java
+
+default: classes buildjar
+
+classes: $(CLASSES:.java=.class)
+
+buildjar:
+	-$(RM) -rf org com
+	$(JAR) xf lib/log4j-1.2.15.jar org
+	$(JAR) xf lib/syntax.jar com
+	$(JAR) xf lib/jgraph.jar org
+	$(JAR) cfm ispui.jar manifest.txt Data/*.class Graph/*.class UI/*.class Parser/*.class org com
+	-$(RM) -rf org com
+
+clean:
+	$(RM) -f Data/*.class Graph/*.class UI/*.class Parser/*.class *.jar
+
+#include .deps

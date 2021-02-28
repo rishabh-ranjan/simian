@@ -1,0 +1,5 @@
+export PATH="@MPI_BINDIR@":$PATH
+if [ ! -x "@MPI_BINDIR@/mpiexec" ]; then
+    export USE_MPIRUN="true"
+fi
+exec "@BINDIR@/simian" $*

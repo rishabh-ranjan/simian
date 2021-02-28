@@ -1,0 +1,15 @@
+name: floyd-dl
+nprocs: 19
+args: 8 e3 
+trace size: 324
+deadlock: yes
+epochs: (16,7,11) (50,0,1) (98,0,1) 
+total epochs: 13
+unique epochs: 3
+repeated epochs: 10
+total generators: 7
+total time: 4384
+scheduler time: 2918
+processing time: 237
+solver time: 1221
+misc time: 8

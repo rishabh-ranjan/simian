@@ -1,0 +1,31 @@
+CXXFILES = Socket.cpp ServerSocket.cpp MpiProc.cpp Envelope.cpp\
+	   name2id.cpp Scheduler.cpp Transition.cpp TransitionList.cpp \
+	   InterleavingTree.cpp main.cpp
+LDFLAGS = -L/usr/lib/camsource -pthread -static-intel -static
+CFLAGS = -c -O2 -Wall -DFIB -static
+
+#GMONFLAGS = -pg
+#GDBFLAGS = -g
+
+#CC = g++
+CC = /opt/intel/Compiler/11.0/069/bin/intel64/icpc
+EXECUTABLE = isp
+OBJS = $(CXXFILES:.cpp=.o)
+DEPS = .deps
+
+all: $(EXECUTABLE)
+
+
+$(EXECUTABLE): $(OBJS)
+	$(CC) $(GMONFLAGS) $(GDBFLAGS) $(LDFLAGS) $(OBJS) -o $@
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) $(GMONFLAGS) $(GDBFLAGS) $< -o $@
+
+$(DEPS): $(CXXFILES)
+	$(CC) -MM $(CXXFILES) > $@
+
+clean:
+	rm -rf $(EXECUTABLE) $(OBJS) $(DEPS)
+
+include .deps

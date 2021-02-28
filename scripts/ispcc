@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# Copyright (c) 2008-2009
+#
+# School of Computing, University of Utah,
+# Salt Lake City, UT 84112, USA
+#
+# and the Gauss Group
+# http://www.cs.utah.edu/formal_verification
+#
+# See LICENSE for licensing information
+#
+
+exec "/usr/bin/mpicc" "-L/usr/local/lib" "-I/usr/local/include/isp" -Wl,-rpath=/usr/local/lib -include isp.h $* -lisp_prof

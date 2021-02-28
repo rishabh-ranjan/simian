@@ -1,0 +1,15 @@
+name: heat
+nprocs: 23
+args: e1 
+trace size: 429
+deadlock: no
+epochs: (2,1,180) (1,0,69) 
+total epochs: 249
+unique epochs: 2
+repeated epochs: 247
+total generators: 1
+total time: 3556
+scheduler time: 3457
+processing time: 75
+solver time: 14
+misc time: 10

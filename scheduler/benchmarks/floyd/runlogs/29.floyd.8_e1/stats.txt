@@ -1,0 +1,15 @@
+name: floyd
+nprocs: 29
+args: 8 e1 
+trace size: 680
+deadlock: no
+epochs: (20,6,1) (23,7,21) (147,0,1) (1,0,30) 
+total epochs: 53
+unique epochs: 4
+repeated epochs: 49
+total generators: 13
+total time: 8765
+scheduler time: 7186
+processing time: 475
+solver time: 1094
+misc time: 10

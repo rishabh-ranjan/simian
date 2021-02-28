@@ -1,0 +1,1 @@
+digraph{node[shape=none margin=0 style=filled colorscheme=ylorrd9 fillcolor=2];compound=true;splines=line;subgraph clusterdummy0_0{style=invis;subgraph clusterdummy0_1{style=invis;subgraph clusterdummy0_2{style=invis;subgraph cluster0{style=dashed;colorscheme=ylorrd9;bgcolor=1;edge[arrowhead=empty];label=epoch_0;}}}}subgraph{edge[color=darkgray arrowsize=1.5];}}

@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<project name="ispUI" default="makejar" basedir=".">
+
+   <property name="project.name" value="ispui" />
+   <property name="startmessage" value="Building ${project.name}.jar now..." />
+   <property name="endmessage" value="${project.name}.jar built successfully!" />
+   <property name="src" location="${basedir}" />
+   <property name="libs" location="${basedir}/lib" />
+   <property name="build" location="build" />
+   <property name="bin" location="build/bin" />
+   <property name="extracted" location="extracted" />
+   <property name="output" location="build/jar" />
+
+
+   <!-- Define the path for the needed 3rd party jar files  -->
+   <path id="class.path">
+       <fileset dir="${libs}">
+           <include name="**/*.jar" />
+       </fileset>
+   </path>
+
+
+   <!-- Clean everything up for a fresh build -->
+   <target name="clean">
+       <delete dir="${build}" />
+       <delete dir="${extracted}" />
+   </target>
+
+
+   <!-- Create the directories needed for the build -->
+   <target name="init" depends="clean">
+       <mkdir dir="${build}" />
+       <mkdir dir="${bin}" />
+       <mkdir dir="${extracted}" />
+       <mkdir dir="${extracted}/com" />
+       <mkdir dir="${extracted}/org" />
+       <mkdir dir="${output}" />
+   </target>
+
+
+   <!-- Compile the java code -->
+   <target name="compile" depends="init">
+       <javac srcdir="${src}" destdir="${bin}">
+           <classpath refid="class.path" />
+
+           <!-- don't need the following elements right now, but may use it later -->
+           <classpath>
+               <fileset dir="Data">
+                   <include name="**/*.java" />
+               </fileset>
+               <fileset dir="Graph">
+                   <include name="**/*.java" />
+               </fileset>
+               <fileset dir="Parser">
+                   <include name="**/*.java" />
+               </fileset>
+               <fileset dir="UI">
+                   <include name="**/*.java" />
+               </fileset>
+           </classpath>
+       </javac>
+   </target>
+
+
+   <!-- The extract target effectively does the following
+       /usr/bin/jar xf lib/log4j-1.2.15.jar org
+       /usr/bin/jar xf lib/syntax.jar com
+       /usr/bin/jar xf lib/jgraph.jar org
+  -->
+   <target name="extract" depends="compile">
+       <exec executable="jar">
+           <arg value="xf" />
+           <arg value="lib/log4j-1.2.15.jar" />
+           <arg value="org" />
+       </exec>
+       <exec executable="jar">
+           <arg value="xf" />
+           <arg value="lib/syntax.jar" />
+           <arg value="com" />
+       </exec>
+       <exec executable="jar">
+           <arg value="xf" />
+           <arg value="lib/jgraph.jar" />
+           <arg value="org" />
+       </exec>
+       <!--
+           Move to location where we can  pick up the org and com directories.
+              Without doing this the jar target doesn't get the top level directories for some reason.
+          -->
+       <copy todir="${extracted}/com">
+           <fileset dir="com" />
+       </copy>
+       <copy todir="${extracted}/org">
+           <fileset dir="org" />
+       </copy>
+       <delete dir="com" />
+       <delete dir="org" />
+   </target>
+
+
+   <!-- Create the jar file "ispui.jar" -->
+   <target name="makejar" depends="extract">
+       <echo>${startmessage}</echo>
+       <!-- This didn't work right ??
+      <exec executable="jar">
+          <arg value="cfm" />
+          <arg value="${project.name}.jar" />
+          <arg value="manifest.txt" />
+          <arg value="${bin}/Data/*.class" />
+          <arg value="${bin}/Graph/*.class" />
+          <arg value="${bin}/UI/*.class" />
+          <arg value="${bin}/Parser/*.class" />
+          <arg value="org" />
+          <arg value="com" />
+      </exec>
+      -->
+       <jar destfile="${output}/${project.name}.jar" basedir="${bin}">
+           <manifest>
+               <attribute name="Main-Class" value="UI/ispMainUI" />
+           </manifest>
+           <fileset dir="${bin}">
+               <include name="**/*.class" />
+           </fileset>
+           <fileset dir="${extracted}">
+               <include name="**/*" />
+               <!-- use this if you don't want to package each jar's html and source
+               <include name="**/*.class" />
+               -->
+           </fileset>
+       </jar>
+       <echo>${endmessage}</echo>
+   </target>
+
+</project>
+
