@@ -9,9 +9,9 @@
 #include<mpi.h>
 #include<math.h>
 #include<time.h>
-#include "memwatch.h"
-#define DEFAULT_PLATE_SIZE 500
-#define CYCLES 10000
+//#include "memwatch.h"
+#define DEFAULT_PLATE_SIZE 50
+#define CYCLES 10
 #define BLOCK_LOW(id,p,n) ((id)*(n)/(p))
 #define BLOCK_HIGH(id,p,n) \
     (BLOCK_LOW((id)+1,p,n)-1)
@@ -27,7 +27,7 @@ typedef struct
 /* Function to be executed by the workers */
 void slave(Params * p)
 {  
-    mwInit();
+    //mwInit();
     /* Timer */
     double start, end;
     int t,i,j,index;
@@ -113,7 +113,9 @@ void slave(Params * p)
 
         MPI_Barrier(MPI_COMM_WORLD);        
         // Exchange values
-        if((p->rank %2) == 0 && p->rank > 0 && p->rank < p->size - 1)
+				int tmp1 = (p->rank %2) == 0 && p->rank > 0 && p->rank < p->size - 1;
+				int tmp2 = p->rank > 0 && p->rank < p->size - 1;
+        if(tmp1 == 1)
         {
             // Send my first row to the previous rank
             MPI_Isend(&sheet[low][0], p->plate_size, MPI_DOUBLE, p->rank-1, 0, MPI_COMM_WORLD, &requests[0]);
@@ -125,7 +127,7 @@ void slave(Params * p)
             MPI_Irecv(&above[0], p->plate_size, MPI_DOUBLE, p->rank+1,0,MPI_COMM_WORLD, &requests[3]);
             count = 4;
         }
-        else if(p->rank > 0 && p->rank < p->size - 1)
+        else if(tmp2 == 1)
         {
             // Receive last row from previous rank
             MPI_Irecv(&below[0], p->plate_size, MPI_DOUBLE, p->rank-1, 0, MPI_COMM_WORLD, &requests[0]);
@@ -166,7 +168,7 @@ void slave(Params * p)
     end = MPI_Wtime();
     if(p->rank == 0)
         fprintf(stderr,"Elapsed time: %f\n",end-start);
-    mwTerm();
+    //mwTerm();
     return;
 }
 
@@ -203,15 +205,16 @@ int main(int argc, char *argv[])
     int rank;
     int size;
     /* Initialize MPI */
+		/*
     if(MPI_Init(&argc, &argv) != MPI_SUCCESS)
     {
         fprintf(stderr, "Unable to initialize MPI!\n");
         return -1;
     }
+		*/
     /* Get rank and size */
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-    
 
     /* Populate the parameters with default values */
     Params p;

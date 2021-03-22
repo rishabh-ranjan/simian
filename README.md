@@ -1,4 +1,4 @@
-# Simian: Symmetry-aware deadlock detection for MPI programs
+# Simian: Symmetry-aware deadlock detection for C/C++ MPI programs
 
 ## Dependencies:
 
@@ -54,3 +54,9 @@ simian -n 8 ./i_adder
 4. User-friendly interface (GUI) to explore the deadlocks/epochs/symmetries present in the program in a graphical manner
 
 5. Implement support for conditional matches-before order of MPI semantics
+
+6. Remove unnecessary code, especially from SMTEncoding.cpp since most of it is now obsolete (make will show compiler warnings for the unused variables in SMTEncoding.cpp).
+
+7. Linear time processing instead of quadratic
+
+8. Remove SMTEncoding altogether and refactor to merge into Simian

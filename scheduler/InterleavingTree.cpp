@@ -32,10 +32,7 @@
 #endif
 
 #include "Encoding.hpp"
-//#include "FMEncoding.hpp"
-//#include "SPOEncoding.hpp"
 #include "assert.h"
-//#include "util/threeval.h"
 
 int choiceInLastInterleaving = 0;
 
@@ -101,33 +98,6 @@ Node* Node::clone()
 
   return n;
 }
-
-//dhriti
-/*Node::Node (const Node& n)
-{
-  /*tlist_dealloc = true;
-  for (int i = 0 ; i < _num_procs; i++) {
-    TransitionList *tl = new TransitionList (*(n._tlist[i]));
-    _tlist.push_back (tl);
-  }
-
-  for (int i = 0 ; i < _num_procs; i++) {
-    // TransitionList *tl = new TransitionList (*(n._tlist[i]));
-    _tlist.push_back (n._tlist[i]);
-  }
-  _num_procs = n._num_procs;
-  type = GENERAL_NODE;
-  _level = n._level;
-  itree = n.itree;
-  has_child = false;
-  ample_set = n.ample_set;
-  enabled_transitions = n.enabled_transitions;
-  other_wc_matches = n.other_wc_matches;
-  curr_match_set = n.curr_match_set;
-  std::cout << "hey" << n.curr_match_set.front() << "\n";
-  std::cout << "\nCopied everything\n";
-  fflush(stdout);
-}*/
 
 //[grz] this constructor is no longer used
 Node::Node (Node &n, bool copyTL) {
@@ -833,24 +803,6 @@ bool Node::GetAmpleSet () {
 
   GetEnabledTransitions (enabled_transitions);
     
-#if 0
-
-  std::list <int>::iterator iter;
-  std::list <int>::iterator iter_end;
-
-  for (int i = 0 ; i < NumProcs (); i++) {
-    iter_end = enabled_transitions[i].end();
-    std::cout <<"Enabled Transitions from process " << i << ": ";
-    for (iter = enabled_transitions[i].begin (); iter != iter_end; iter++) {
-      std::cout << (*iter) << " ";
-    }
-    std::cout << "last_matched is " << itree->last_matched[i];
-    std::cout << std::endl;
-  }
-  std::cout << "Done Listing \n";
-
-#endif
-
   /*
    * See if there is a Barrier set ready to go!
    */
@@ -1029,7 +981,6 @@ std::set<int> Node:: getAllDescendants (CB c)
   std::set<int> _alldescendants;
   std::stack<int> st;
   st.push(c._index);
-  unsigned int size;
 
   while(!st.empty()) {
     
@@ -1041,8 +992,6 @@ std::set<int> Node:: getAllDescendants (CB c)
     std::set<int> _idesc;
     _idesc = getImmediateDescendants(tmp);
     
-    //if(_idescendants.empty())
-    //  break;
     std::set<int>::iterator it_end, it;
     it_end = _idesc.end();
     
@@ -1052,17 +1001,6 @@ std::set<int> Node:: getAllDescendants (CB c)
     }
   }
 
-  // debug print
-  //
-  //std::set<int>::iterator it, itE;
-  //itE = _alldescendants.end();
-  //std::cout << "All Descendants of " << c << ": [ ";
-  //for(it = _alldescendants.begin(); it != itE; it++) {
-  //  std::cout << *it << " " ;
-  //}
-
-  //std::cout << "]\n";
-   
   return _alldescendants;
 }
 
@@ -1071,21 +1009,6 @@ std::set<int> Node::getAllAncestors(CB c)
 {
   std::set<int> res;
  
- // CB c1(c._pid, -1);
- // //std::vector<int>  &ancs(t->get_ancestors());
- // TransitionList *tl = _tlist[c._pid];
- // std::vector<Transition>::reverse_iterator tlit, tlitend;
- // tlitend = tl->_tlist.rend();
- // int j = tl->_tlist.size()-1; 
- // for(tlit = tl->_tlist.rbegin(); tlit != tlitend; tlit++){
- //   c1._index = j;
- //   j--;
- //   if(c1 > c){
- //     //std::cout << "c1 = "<< c1 << " is later issued than " << c << std::endl;
- //     continue;
- //   }
- //   else{
-
  std::list <CB> stack; 
  stack.push_back(c);
    
@@ -1104,23 +1027,11 @@ std::set<int> Node::getAllAncestors(CB c)
      
      int i = *iter;
      
-     // std::cout << "inserting ancestor " << i << std::endl;
-     
      res.insert(i);
      CB c1(c._pid, i);
      stack.push_back(c1);
    }
  }
- //  }   
- // }
- 
- //debug print 
- // std::set<int>::iterator sit, sitend;
- // sitend = res.end();
- // std::cout << "All ancestor set of" << c << ":[ " <<std::endl;
- // for(sit = res.begin(); sit != sitend; sit++)
- //   std::cout << *sit << " ";
- // std::cout <<  " ]"<< std::endl;
  
  return res;
  
@@ -1137,8 +1048,6 @@ bool Node::isAncestor(CB c1, CB c2)
     //std::cout << "Ancestors of  "<< c1 << ":"  << res.size() << std::endl;
     
     std::set<int>::iterator rit, rit_end; 
-    
-    Transition *t = GetTransition(c1);
     
     //  rit = t->get_ancestors().begin();
     rit_end = res.end();
@@ -1428,47 +1337,13 @@ bool matches(std::list<CB> sendRecv, std::vector<expression> changedConditionals
 // -- changed by dhriti
 int ITree::CHECK (ServerSocket &sock, std::list <int> &l, std::vector<expression> changedConditionals) 
 {
-  //std::cout << " [CHECK begin depth=" << depth << " " << _slist.size() << "]\n";
-	//static bool printed = false;
 	bool probe_flag = false;
 	int choice = 0; // default is EXP_MODE_LEFT_MOST
 	Node *n = GetCurrNode();
-  //std::cout << "Inside check: " << n->ample_set.size() << "\n";
   fflush(stdout);
 	Envelope *env;
 	if (n->GetAmpleSet()) 
 	{
-		//DR(
-		std::vector <std::list <CB> >::iterator iter2 = n->ample_set.begin();
-		std::vector <std::list <CB> >::iterator iter_end2 = n->ample_set.end();
-		//std::cout << "\tample_set: " << n->ample_set.size() << "\n";
-		/*
-		for(; iter2!=iter_end2; iter2++) 
-		{
-			std::list<CB>::iterator li = iter2->begin();
-			std::list<CB>::iterator lie = iter2->end();
-			std::cout << "\t\t";
-			for(; li!=lie; li++) 
-			{
-				std::cout << " " << *li;
-			}
-			std::cout << "\n";
-		}
-    fflush(stdout); 
-		iter2 = n->ample_set.begin();
-		for(; iter2!=iter_end2; iter2++) 
-		{
-			std::list<CB>::iterator li = iter2->begin();
-			std::list<CB>::iterator lie = iter2->end();
-			for(; li!=lie; li++) 
-			{
-				std::cout << "\t\t\t" << *n->GetTransition(*li)->GetEnvelope() << "\n";
-			}
-		}
-		//)
-    fflush(stdout); 
-		*/
-		/* == fprs begin == */
 		std::list<CB> cbl;
 
 		// modify the ample set
@@ -1514,46 +1389,6 @@ int ITree::CHECK (ServerSocket &sock, std::list <int> &l, std::vector<expression
 		}
 		else if(Scheduler::_errorTrace)
 		{
-			/* (Rishabh)
-			// [svs] : addition for the generation of error trace
-			std::vector< std::list<CB> >::iterator ait;
-			bool flag = false;
-			for (ait = n->ample_set.begin() ; ait != n->ample_set.end() ; ait++) 
-			{
-				std::list<CB>::iterator lit; 
-				std::stringstream ss;
-				if(((*ait).size() == 2) &&
-					(n->GetTransition((*ait).front())->GetEnvelope()->isSendType()) &&
-					(n->GetTransition((*ait).back())->GetEnvelope()->isRecvType()) )
-				{
-					for(lit = (*ait).begin(); lit != (*ait).end(); lit++)
-					{
-						ss << (*lit)._pid << (*lit)._index;
-					}
-					std::string matchNumeral = ss.str();
-					literalt s_ab = sch->fm->matchMap.find(matchNumeral)->second;
-					switch(sch->fm->slv->l_get(s_ab).get_value())
-					{
-						case tvt::TV_TRUE:
-								cbl = (*ait);
-								flag = true;
-								break;
-						case tvt::TV_FALSE:
-						case tvt::TV_UNKNOWN:
-								break;
-						default: assert(false);
-					}
-				}
-				if(flag)
-				{
-					break;
-				}
-			}
-			if(!flag)
-			{
-				cbl = n->ample_set.at(choice);
-			}
-			*/
 		}
 		else // dhriti: I have made the changes only here because only this (else part) is actually executed
 		{
@@ -1563,7 +1398,7 @@ int ITree::CHECK (ServerSocket &sock, std::list <int> &l, std::vector<expression
 				choice = rand() % n->ample_set.size();
 			}
 			/* == fprs start == */
-      while(choice < n->ample_set.size())
+      while(choice < (int)n->ample_set.size())
       {
         cbl = n->ample_set.at(choice);
         if(!matches(cbl, changedConditionals, n))
@@ -1574,11 +1409,9 @@ int ITree::CHECK (ServerSocket &sock, std::list <int> &l, std::vector<expression
         else
           break;
       }
-      //std::cout << "\nChoice : " << choice << "\n";
-      //fflush(stdout);
-      if(choice == n->ample_set.size()) // This means that we do not have any eligible choice available. There is no non-redundant send left to match with this receive
+      if(choice == (int)n->ample_set.size()) // This means that we do not have any eligible choice available. There is no non-redundant send left to match with this receive
       {
-        std::cout << "\n*** TERMINATING THIS INTERLEAVING ***" << std::endl;
+        //std::cout << "\n*** TERMINATING THIS INTERLEAVING ***" << std::endl;
         return 1;
       }
       // Saving the choice in choiceInLastInterleaving (if this is the wildcard receive before the 'if')
@@ -1597,29 +1430,6 @@ int ITree::CHECK (ServerSocket &sock, std::list <int> &l, std::vector<expression
         }
       }
       
-      /*if(!matches(cbl, changedConditionals, n))
-      {
-        depth++; // I am doing this otherwise assertion at line 2105 fails
-        n->ample_set.erase(n->ample_set.begin()); // This choice must not be further explored..., so delete it
-
-        //TODO: At the right moment, do not delete it as part of another interleaving
-
-        return 2; // We do not want to explore this interleaving, so we avoid this choice and restart
-      }*/
-
-      //DR (
-			/*
-      std::cout << "\tchoice:";
-      std::list<CB>::iterator li = cbl.begin();
-      std::list<CB>::iterator lie = cbl.end();
-      for(; li!=lie; li++) 
-      {
-        std::cout << " " << *li;
-      }
-      std::cout << "\n";
-      fflush(stdout);
-      //)
-			*/
   	} 
 		/* == fprs end == */
     //------------------Till this point we have selected the choice amonst ample sets available----------------------------------------------
@@ -1659,50 +1469,11 @@ int ITree::CHECK (ServerSocket &sock, std::list <int> &l, std::vector<expression
 			//  n->curr_match_set = cbl;
 		} 
 
-		/*DR(
-		if(n->isWildcardNode()) 
-		{
-			std::cout << "\twildcard-recv: " << n->wildcard << "\n";
-
-			std::list <CB> *acs = &aux_coenabled_sends[n->wildcard];
-			std::set <CB> *ms = &matched_sends[n->wildcard];
-
-			std::list <CB>::iterator li = acs->begin();
-			std::list <CB>::iterator lie = acs->end();
-			std::cout << "\taux_coenabled_sends:";
-			for(; li!=lie; li++)
-				std::cout << " " << *li;
-			std::cout << "\n";
-
-			std::set <CB>::iterator si = ms->begin();
-			std::set <CB>::iterator sie = ms->end();
-			std::cout << "\tmatched_sends:";
-			for(; si!=sie; si++)
-				std::cout << " " << *si;
-			std::cout << "\n";
-		}
-		)*/
-
 		#ifdef FIB
 		// if (Scheduler::_fib) { // [svs] -- changes done for predictive analysis
 		al_curr.push_back(cbl);
 		//}
 		#endif
-		//print_CBL(cbl);
-
-		//         if (GetCurrNode()->ample_set.size() > 1) {
-		//             std::cout << "Possible match sets \n";
-		//             print(GetCurrNode()->ample_set);
-
-		//         }
-		/* Create a backtrack node */
-		//         if (GetCurrNode()->_tlist[3]->_tlist.size() >= 1360 ) {
-		//             if (!printed) {
-		//                 std::cout << *(GetCurrNode()) << std::endl;
-		//                 printed = true;
-		//             }
-
-		//         }
 		if (depth >= (int)_slist.size ()-1) 
 		{
 			//            if (Scheduler::_explore_mode == EXP_MODE_ALL && 
@@ -1857,19 +1628,6 @@ int ITree::CHECK (ServerSocket &sock, std::list <int> &l, std::vector<expression
 			}
 			std::ostringstream oss;
 
-			/*
-			if ((env->func_id == RECV || env->func_id == IRECV) && env->src == WILDCARD) {
-			have_wildcard = true;
-			n->type = WILDCARD_RECV_NODE;
-			n->wildcard._pid = env->id;
-			n->wildcard._index = env->index;
-			} else if ((env->func_id == PROBE || env->func_id == IPROBE) && env->src == WILDCARD) {
-			have_wildcard = true;
-			n->type = WILDCARD_PROBE_NODE;
-			n->wildcard._pid = env->id;
-			n->wildcard._index = env->index;
-			} else n->type = GENERAL_NODE;
-			*/
 			oss << goahead << " " << env->index << " " << source;
 
 			env->Issued ();
@@ -1935,21 +1693,6 @@ bool ITree::NextInterleaving (std::vector<expression> changedConditionals)
   int i = depth+1;
   assert(i == (int) _slist.size());
 
-  //    for(int d=0; d<i; d++) {
-  //        Node *n = _slist[d];
-  //        std::cout << "Node " << d << "\n";
-  //        std::vector<TransitionList*>::iterator ti = n->_tlist.begin();
-  //        std::vector<TransitionList*>::iterator tie = n->_tlist.end();
-  //        for(; ti != tie; ti++) {
-  //            std::cout << "\tTL " << (*ti)->GetId() << "\n";
-  //            std::vector<Transition>::iterator tti = (*ti)->_tlist.begin();
-  //            std::vector<Transition>::iterator ttie = (*ti)->_tlist.end();
-  //            for(; tti != ttie; tti++) {
-  //                std::cout << "\t\t" << tti->t << " " << tti->t->ref << "\n";
-  //            }
-  //        }
-  //    }
-
   //#ifdef FIB
   int oldDepth = depth;
   last_node = GetCurrNode ();
@@ -1981,76 +1724,7 @@ bool ITree::NextInterleaving (std::vector<expression> changedConditionals)
   {
     /* erase the first match-set */
     Node *n = _slist[i];
-    if (!n->ample_set.empty()) 
-    {
-      /*DR(
-      std::vector <std::list <CB> >::iterator iter2 = n->ample_set.begin();
-      std::vector <std::list <CB> >::iterator iter_end2 = n->ample_set.end();
-      std::cout << "\t[" << i << "] ample_set:\n";
-      for(; iter2!=iter_end2; iter2++) 
-      {
-        std::list<CB>::iterator li = iter2->begin();
-        std::list<CB>::iterator lie = iter2->end();
-        std::cout << "\t\t";
-        while(li != lie) 
-        {
-          std::cout << *li;
-          if(++li == lie) break;
-          std::cout << " ";
-        }
-        std::cout << "\n";
-      }
 
-      iter2 = n->ample_set.begin();
-      for(; iter2!=iter_end2; iter2++) 
-      {
-        std::list<CB>::iterator li = iter2->begin();
-        std::list<CB>::iterator lie = iter2->end();
-        for(; li!=lie; li++) 
-        {
-        std::cout << "\t\t\t" << *n->GetTransition(*li)->GetEnvelope() << "\n";
-        }
-      }
-      )
-			*/
-      // n->ample_set.erase(n->ample_set.begin() + choiceInLastInterleaving); //--> Commented by dhriti (don't delete ample sets)
-    }
-
-		/*
-    DR(
-    if(n->isWildcardNode()) 
-    {
-      std::cout << "\t\trecv: " << n->wildcard << "\n";
-
-      std::list <CB> *acs = &aux_coenabled_sends[n->wildcard];
-      std::set <CB> *ms = &matched_sends[n->wildcard];
-
-      std::list <CB>::iterator li = acs->begin();
-      std::list <CB>::iterator lie = acs->end();
-      std::cout << "\t\taux_coenabled_sends:";
-      while(li != lie) 
-      {
-        std::cout << *li;
-        if(++li == lie) break;
-          std::cout << " ";
-      }
-      std::cout << "\n";
-
-      //[grz] must fix later. not safe to access last_node if a deadlock occurs
-      //            li = acs->begin();
-      //            for(; li != lie; li++)
-      //              std::cout << "\t\t\t" << *last_node->GetTransition(*li)->GetEnvelope() << "\n";
-
-      std::set <CB>::iterator si = ms->begin();
-      std::set <CB>::iterator sie = ms->end();
-      std::cout << "\t\tmatched_sends:";
-      for(; si!=sie; si++)
-      std::cout << " " << *si;
-      std::cout << "\n";
-    }
-    )
-		*/
-    //std::cout << "Matching these: " << n->wildcard << "\n";
     std::vector<expression>::iterator it = changedConditionals.begin();
     expression ex = *it;
     std::string varName = ex.varName;
@@ -2291,21 +1965,6 @@ void ITree::FindCoEnabledSends () {
   for (iter = _slist.begin (); iter != iter_end-1; iter++) {
     Node *n = (*iter);
         
-    /*
-      #if 0
-      std::cout << "Co-enabled Begin for " << count << "\n";
-      for (unsigned int j = 0; j < n->enabled_transitions.size(); j++) {
-      std::list <int>::iterator tr;
-      for (tr = n->enabled_transitions[j].begin(); tr != n->enabled_transitions[j].end(); tr++) {
-      std::cout << "[" << j << ", " << *tr << "]" << " ";
-      }
-      }
-      std::cout << "\n";
-      std::cout << "Co-enabled END\n";
-      count++;
-      #endif
-    */
-
     /* Only care about nodes with wild card receive */
     if (!n->isWildcardNode()) continue;
     //[grz]        if(!n->GetTransition(n->wildcard)->GetEnvelope()->func_id == IPROBE) continue;
@@ -2345,19 +2004,15 @@ void ITree::FindCoEnabledSends () {
 	    }
 	  }
 	  if (!sendcoenabled) {
-	    //DR( std::cout << "Finding Path between " << (n->wildcard) << " and " << c << "\n"; )
 
 	      bool overtaking = (c._pid ==
 				 GetCurrNode()->GetTransition(n->wildcard)->
 				 get_curr_matching()._pid);
-	    //DR( std::cout << "overtaking=" << overtaking << "\n"; )
 	      if (overtaking || 
 		  FindNonSendWaitPath (visited, n->wildcard, c)) {
 
-		//DR( std::cout << n->wildcard << " and " << c << "are not co-enabled\n"; )
 		  break;
 	      } else {
-		//DR( std::cout << n->wildcard << " and " << c << "are co-enabled\n"; )
 
 		  if(prev_sends->find(c) == prev_sends->end()) {
 		    n->has_aux_coenabled_sends = true;
@@ -2387,12 +2042,6 @@ void ITree::ClearInterCB () {
   for (int i = 0 ; i < n->NumProcs (); i++) {
     for (unsigned int j = 0;  j < n->_tlist[i]->_tlist.size(); j++) {
       std::vector<CB>::iterator iter;
-      /*
-	for (iter = n->_tlist[i]->_tlist[j].get_inter_cb().begin();
-	iter != n->_tlist[i]->_tlist[j].get_inter_cb().end(); iter++) {
-	//delete (*iter);
-	}
-      */
       n->_tlist[i]->_tlist[j].mod_inter_cb().clear();
     }
   }
@@ -2452,22 +2101,9 @@ bool ITree:: checkIfSATAnalysisRequired()
      node is greater > 2
   */
   if(have_wildcard){
-    // int i = _slist.size();
-    // while(i-- > 0){
-    //   Node *n = _slist[i];
-    //   std::cout << "Analyzing node: "<< i << "with ample-set size=" << n->ample_set.size()
-    // 		<< std::endl;
-    //   if(n->ample_set.size() > 1) {
-    // 	std::cout << "SAT analysis is REQUIRED: node " << i 
-    // 		  << " has found to have multiple ample-set entries"<< std::endl;
-    // 	return true;
-    //   }
-    // }
-    // std::cout << "SAT analysis is NOT REQUIRED: wildcards present" <<std::endl;
-    // return false;
     return true;
   }
-  std::cout << "SAT analysis is NOT REQUIRED: no wildcards" <<std::endl;
+  //std::cout << "SAT analysis is NOT REQUIRED: no wildcards" <<std::endl;
   return false;
 }
 
@@ -2615,11 +2251,6 @@ void ITree::checkBarrier(CB &c, CB &c1, std::vector<CB> &s)
 	  blist.push_back(*iter);
 	}
       }
-    //   if(br != NULL)
-    //     {
-    //       //  std::cout<<"added the barrier :"<<*(n->GetTransition(*br))<<"\n";
-    //       blist.push_back(br);
-    //     }
   }
 }
 
@@ -2775,58 +2406,10 @@ void ITree::printRelBarriers()
 {
   std::vector<std::list<CB> >::iterator iter, iter_end;
   std::list<CB>::iterator iter2, iter2_end;
-  int i;
-    
+
   getBarrierList();
-	/*
-  if (!FRBlist.empty ()) {
-    std::cout << "\n";
-    std::cout<< "List of Relevant Barriers - None should be removed from the program:\n";
-    std::cout<< " FRB list size: " << FRBlist.size() << "\n";
-    iter_end = FRBlist.end ();
-    for (i = 1, iter = FRBlist.begin (); iter != iter_end; i++, iter++) {
-      std::cout << "Match Set: " << i << "\n";
-      iter2_end = iter->end ();
-      for (iter2 = iter->begin(); iter2 != iter2_end; iter2++) {
-	Envelope *env = last_node->GetTransition (*iter2)->GetEnvelope ();
-	std::cout << iter2->_pid << ": " << env->filename << ":"
-		  << env->linenumber << "\n";
-      }
-      std::cout << "\n";
-    }
-    std::cout << "\n";
-  }
-	*/
     
   getFIB();
-	/*
-  if (!FIBlist.empty () && !Scheduler::_limit_output) {//CGD
-    std::cout << "\n";
-    std::cout << "List of Irrelevant Barriers - If want to remove, remove a complete match set:\n";
-    iter_end = FIBlist.end ();
-        
-    //[APH]
-    Scheduler::_logfile<< "[FIB]" << std::endl;
-
-    for (i = 1, iter = FIBlist.begin (); iter != iter_end; i++, iter++) {
-      //std::cout << "Match Set: " << i << "\n";
-      iter2_end = iter->end ();
-      for (iter2 = iter->begin(); iter2 != iter2_end; iter2++) {
-	Envelope *env = last_node->GetTransition (*iter2)->GetEnvelope ();
-	std::cout << iter2->_pid << ": " << env->filename << ":"
-		  << env->linenumber << "\n";
-	// [APH]
-	Scheduler::_logfile << env->filename << " "
-			    << env->linenumber << std::endl;
-      }
-      std::cout << "\n";
-    }
-    std::cout << "\n";
-  } else if(!Scheduler::_limit_output){//CGD
-    std::cout << "\n";
-    std::cout << "There were no Irrelevant Barriers!\n";
-  }
-	*/
 }
 
 #endif

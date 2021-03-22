@@ -2321,8 +2321,8 @@ bool SMTEncoding::changeConditionals(std::vector<expression> & changedConditiona
         //std::cout << (*s) << "\n";
         //generateConstraints(false);  // argument 'false' indicates that we are calling generateConstraints from this function
 				//bool res = isSatisfied(s);
-				std::cout << "checking feasibility of changed conditionals... ";
-				fflush(stdout);
+				//std::cout << "checking feasibility of changed conditionals... ";
+				//fflush(stdout);
 				logger << "checking feasibility of changed conditionals...";
 				clock_t tic = clock();
 				bool vres = ver.check_feasibility();
@@ -2330,12 +2330,12 @@ bool SMTEncoding::changeConditionals(std::vector<expression> & changedConditiona
 				double ela = double(toc-tic)/CLOCKS_PER_SEC;
 				if (vres) {
 					logger << "verdict: feasible";
-					std::cout << "feasible." << std::endl;
+					//std::cout << "feasible." << std::endl;
 				} else {
 					logger << "verdict: not feasible";
-					std::cout << "not feasible." << std::endl;
+					//std::cout << "not feasible." << std::endl;
 				}
-				std::cout << "feasibility checking time: " << ela << " s" << std::endl;
+				//std::cout << "feasibility checking time: " << ela << " s" << std::endl;
         if(vres)
         {
           //if(possibleMatchAvailable(changedConditionals))

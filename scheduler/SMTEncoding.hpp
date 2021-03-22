@@ -107,18 +107,6 @@ public:
     return c.bv_const(name.c_str(), width);
   } 
   
-	Verifier ver;
-	void init_ver();
-	void add_condition(const std::string&);
-	/*
-	//void test(char** asserts); // rishabh
-	//--rishabh
-	void init_verifier(Verifier&);
-	void add_condition(Verifier&, const std::string&);
-	bool run_verifier(Verifier&);
-	//rishabh--
-	*/
-
   //creation of literals m_a, i_a,
   // and bitvectors for maintaining clocks
   void createEventCovers(std::vector<std::pair<int, int> >);
@@ -246,6 +234,11 @@ public:
   static std::deque<std::pair<std::string, expr_vector> > seenConstraints;
   static int procToExplore;
   std::vector<std::pair<CB, CB> > dependencies;
+
+	Verifier ver;
+	void init_ver();
+	void add_condition(const std::string&);
+
  };
 
 

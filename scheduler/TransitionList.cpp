@@ -52,7 +52,6 @@ TransitionList* TransitionList::clone() {
 TransitionList::~TransitionList() {
     std::vector <Transition>::iterator ti = _tlist.begin();
     std::vector <Transition>::iterator tie = _tlist.end();
-    int i=0;
     for(; ti != tie; ti++) {
         ti->unref();
     }
@@ -62,11 +61,6 @@ TransitionList::~TransitionList() {
 TransitionList& TransitionList::operator= (TransitionList &t) {
     std::vector <Transition>::iterator  iter;
     std::vector <Transition>::iterator  iter_end = t._tlist.end();
-
-    /* avo 06/05/08 - can we clean up _tlist here??? */
-    std::vector <Transition>::iterator ti = _tlist.begin();
-    std::vector <Transition>::iterator tie = _tlist.end();
-    //for(; ti != tie; ti++) ti->unref();
 
     last_matched = t.last_matched;
     _leaks_string << t._leaks_string.str();

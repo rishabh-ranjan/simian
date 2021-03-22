@@ -3,7 +3,7 @@
 #include <limits.h>
 #include <stdlib.h>
 #include <math.h>
-#include <iostream>
+//#include <iostream>
 #include "mpi.h"
 #define CHUNKSIZE      1000
 /* message tags */

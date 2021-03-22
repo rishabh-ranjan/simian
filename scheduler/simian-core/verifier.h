@@ -252,7 +252,6 @@ class Verifier {
 		}
 	}
 
-	//TODO: needs refactoring
 	/* vector of (pid, (data_cnd, src_cnd, tag_cnd)) recording original cnds */
 	std::vector< std::pair< int, std::array< Condition, 3 >>> orig_cnds_;
 	/* encode the feasibility of epoch #eid under changed conditions

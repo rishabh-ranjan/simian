@@ -135,9 +135,6 @@ std::map <SOCKET, int> Scheduler::_fd_id_map;
 std::vector <MpiProc *> Scheduler::_runQ;
 Node *Scheduler::root = NULL;
 
-static int redrule1cnt = 0 ;
-static int redrule2cnt = 0 ;
-
 //int Scheduler::traceLength = 0;
 
 Scheduler * Scheduler::GetInstance () {
@@ -930,10 +927,7 @@ void Scheduler::StartMC () {
 
 int Scheduler::generateFirstInterleaving ()
 {
-	struct timeval tv;
 	Transition *t;
-	tv.tv_usec = 0;
-	tv.tv_sec = 2;
 	int count = atoi(_num_procs.c_str ());
 	int nprocs = count;
 
