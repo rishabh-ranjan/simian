@@ -113,9 +113,7 @@ void slave(Params * p)
 
         MPI_Barrier(MPI_COMM_WORLD);        
         // Exchange values
-				int tmp1 = (p->rank %2) == 0 && p->rank > 0 && p->rank < p->size - 1;
-				int tmp2 = p->rank > 0 && p->rank < p->size - 1;
-        if(tmp1 == 1)
+        if((p->rank %2) == 0 && p->rank > 0 && p->rank < p->size - 1)
         {
             // Send my first row to the previous rank
             MPI_Isend(&sheet[low][0], p->plate_size, MPI_DOUBLE, p->rank-1, 0, MPI_COMM_WORLD, &requests[0]);
@@ -127,7 +125,7 @@ void slave(Params * p)
             MPI_Irecv(&above[0], p->plate_size, MPI_DOUBLE, p->rank+1,0,MPI_COMM_WORLD, &requests[3]);
             count = 4;
         }
-        else if(tmp2 == 1)
+        else if(p->rank > 0 && p->rank < p->size - 1)
         {
             // Receive last row from previous rank
             MPI_Irecv(&below[0], p->plate_size, MPI_DOUBLE, p->rank-1, 0, MPI_COMM_WORLD, &requests[0]);
@@ -205,6 +203,7 @@ int main(int argc, char *argv[])
     int rank;
     int size;
     /* Initialize MPI */
+		MPI_Init(&argc, &argv);
 		/*
     if(MPI_Init(&argc, &argv) != MPI_SUCCESS)
     {
