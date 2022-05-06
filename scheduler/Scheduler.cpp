@@ -180,9 +180,9 @@ void Scheduler::SetParams (std::string port, std::string num_clients,
 			   /* == fprs end == */
 			   /* svs -- SAT solving begin */
 			   int encoding, bool dimacs, bool show_formula, 
-			   std::string solver, int kbuffer
+			   std::string solver, int kbuffer,
 			   /* svs -- SAT solving end */
-			   ) {//CGD
+				 bool epoch, bool symmetry) {//CGD
 solver = "z3"; // dhriti
   //solver = "minisat";
   _param_set = true;
@@ -233,6 +233,9 @@ solver = "z3"; // dhriti
   } else {
     _logfile << num_clients << "\n";
   }
+
+	_epoch = epoch;
+	_symmetry = symmetry;
 }
 
 Scheduler::Scheduler () :
@@ -880,7 +883,7 @@ void Scheduler::StartMC () {
 			logger << "start trace verification...";
       //std::cout << "verifying..." << std::endl;
 			ull tic = unix_time_ms();
-      smt = new SMTEncoding(verified_hashes, it, m/*, slv*/);
+      smt = new SMTEncoding(_epoch, _symmetry, verified_hashes, it, m/*, slv*/);
 
 			logger << "generate Hermes constraints...";
       smt->encodingPartialOrders();

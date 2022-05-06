@@ -18,6 +18,7 @@
  * Contact:     isp-dev@cs.utah.edu
  */
 
+#include <stdlib.h>
 #include "Scheduler.hpp"
 #include <iostream>
 #include <fstream>
@@ -55,6 +56,10 @@ void child_signal_handler (int signal)
 #endif
 
 int main (int argc, char **argv) {
+
+	bool epoch = getenv("NO_EPOCH") ? false : true;
+	bool symmetry = getenv("NO_SYMMETRY") ? false : true;
+
 	start_time = unix_time_ms();
 	std::string name;
 	std::string args;
@@ -236,6 +241,16 @@ int main (int argc, char **argv) {
   }
 /* == fprs end == */
 
+	/*
+	if (HAVE_OPT(EPOCH)) {
+		epoch = OPT_VALUE_EPOCH;
+	}
+
+	if (HAVE_OPT(SYMMETRY)) {
+		symmetry = OPT_VALUE_SYMMETRY;
+	}
+	*/
+
 /* svs -- SAT encoding begin */
   if(HAVE_OPT(ENCODING)){
     encoding = OPT_VALUE_ENCODING;
@@ -285,7 +300,8 @@ int main (int argc, char **argv) {
                        report_progress, fib, openmp, use_env_only, 
                        batch_mode, stop_at_deadlock, explore_mode,
                        explore_some, NULL, NULL, NULL, debug, no_ample_set_fix,
-                       bound, limit_output, fprs, encoding, dimacs, show_formula, solver, kbuffer);//CGD
+                       bound, limit_output, fprs, encoding, dimacs, show_formula, solver, kbuffer,
+											 epoch, symmetry);
 /* == fprs end == */
 
   if (!quiet && !limit_output) {//CGD
