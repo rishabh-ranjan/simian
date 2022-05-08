@@ -166,13 +166,13 @@ AWK = mawk
 BINDIR = /usr/local/bin
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2 -DFIB
+CFLAGS = -g -O2 -DFIB -DCONFIG_OPTIONAL_AMPLE_SET_FIX
 CPP = gcc -E
 CPPFLAGS = 
 CXX = g++
 CXXCPP = g++ -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2 -DFIB
+CXXFLAGS = -g -O2 -DFIB -DCONFIG_OPTIONAL_AMPLE_SET_FIX
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
@@ -193,9 +193,9 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-JAR = 
-JAVA = 
-JAVAC = 
+JAR = jar
+JAVA = /usr/bin/java
+JAVAC = javac
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBDIR = /usr/local/lib
@@ -218,7 +218,7 @@ MPICC = /usr/bin/mpicc
 MPICXX = /usr/bin/mpicxx
 MPIDIR = /usr
 MPI_BINDIR = /usr/bin
-MPI_INCDIR = /usr/include
+MPI_INCDIR = /usr/include/x86_64-linux-gnu/mpich/
 NM = /usr/bin/nm -B
 NMEDIT = 
 OBJDUMP = objdump
@@ -239,10 +239,10 @@ SET_MAKE =
 SHELL = /bin/bash
 STRIP = strip
 VERSION = 0.2.0
-abs_builddir = /home/rr/ws/Simian/UI
-abs_srcdir = /home/rr/ws/Simian/UI
-abs_top_builddir = /home/rr/ws/Simian
-abs_top_srcdir = /home/rr/ws/Simian
+abs_builddir = /home/rishab/ws/simian/UI
+abs_srcdir = /home/rishab/ws/simian/UI
+abs_top_builddir = /home/rishab/ws/simian
+abs_top_srcdir = /home/rishab/ws/simian
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_CXX = g++
@@ -273,9 +273,9 @@ htmldir = ${docdir}
 include_ispdir = /usr/local/include/isp
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/rr/ws/Simian/install-sh
+install_sh = ${SHELL} /home/rishab/ws/simian/install-sh
 jar = jar
-java = java
+java = /usr/bin/java
 javac = javac
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
@@ -588,10 +588,10 @@ uninstall-am: uninstall-binSCRIPTS uninstall-srcJAVA
 
 ispui.jar: classsrc.stamp
 	-rm -rf org com ispui.jar
-	 xf lib/log4j-1.2.15.jar org
-	 xf lib/syntax.jar com
-	 xf lib/jgraph.jar org
-	 cfm ispui.jar manifest.txt Data/*.class Graph/*.class UI/*.class Parser/*.class org com
+	jar xf lib/log4j-1.2.15.jar org
+	jar xf lib/syntax.jar com
+	jar xf lib/jgraph.jar org
+	jar cfm ispui.jar manifest.txt Data/*.class Graph/*.class UI/*.class Parser/*.class org com
 	-rm -rf org com
 
 install-srcJAVA:
