@@ -39,10 +39,11 @@ class SMTEncoding : public Encoding {
   
 public:
   SMTEncoding(
+			bool epoch, bool symmetry,
 			std::unordered_map< int, std::vector< EpochInfo >>& verified_hashes,
 			ITree *it, M *m/*, propt *_slv*/):
 		Encoding(it, m/*, _slv*/), width(0), eventSize(0),
-		ver(verified_hashes)
+		ver(epoch, symmetry, verified_hashes)
   {
     noVars = 1;
     s = new solver(c);

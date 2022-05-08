@@ -157,6 +157,12 @@ class Verifier {
 		exit(1);
 	}
 
+	/* apply epoch decomposition */
+	bool use_epoch_;
+
+	/* apply symmetry breaking */
+	bool use_symmetry_;
+
 	/* reference to hash-table of already verified epochs */
 	std::unordered_map< int, std::vector< EpochInfo >>& verified_hashes_;
 
@@ -260,7 +266,9 @@ class Verifier {
 
 public:
 	explicit Verifier(
+			bool use_epoch, bool use_symmetry,
 			std::unordered_map< int, std::vector< EpochInfo >>& verified_hashes):
+		use_epoch_(use_epoch), use_symmetry_(use_symmetry),
 		verified_hashes_(verified_hashes),
 		ctx_(), slv_(ctx_), aut_ctr_(0) {}
 

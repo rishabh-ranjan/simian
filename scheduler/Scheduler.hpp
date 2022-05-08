@@ -130,7 +130,7 @@ public:
                          te_Exp_Mode explore_mode, int explore_some, 
                          std::vector<int>* explore_all,
                          std::vector<int>* explore_random, std::vector<int>* explore_left_most,
-                         bool debug, bool no_ample_set_fix, unsigned bound, bool limit_output, bool fprs, int encoding, bool dimacs, bool show_formula, std::string solver, int kbuffer);
+                         bool debug, bool no_ample_set_fix, unsigned bound, bool limit_output, bool fprs, int encoding, bool dimacs, bool show_formula, std::string solver, int kbuffer, bool epoch, bool symmetry);
 /* == fprs end == */
   /*
    * Processes that can run are here.
@@ -260,4 +260,7 @@ public:
   static char** assertsData; //dhriti
   static std::vector<expression> changedConditionals; //dhriti
 };
+
+	static bool _epoch;
+	static bool _symmetry;
 #endif

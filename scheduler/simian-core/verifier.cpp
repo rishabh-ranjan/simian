@@ -413,18 +413,20 @@ void Verifier::order_dfs_(std::vector< bool >& seen, int idx) {
 
 void Verifier::pre_epoch_() {
 	epochs_.clear();
-	order_.clear();
 	for (Call& c: calls_) {
 		if (c.type == CallType::raw_barr) continue;
 		c.epoch = -1;
 		for (int x: c.preds) calls_[x].succs.push_back(c.idx);
 	}
-	std::vector< bool > seen(calls_.size());
-	for (Call& c: calls_) {
-		if (c.type == CallType::raw_barr) continue;
-		if (seen[c.idx]) continue;
-		seen[c.idx] = true;
-		order_dfs_(seen, c.idx);
+	if (use_epoch_) {
+		order_.clear();
+		std::vector< bool > seen(calls_.size());
+		for (Call& c: calls_) {
+			if (c.type == CallType::raw_barr) continue;
+			if (seen[c.idx]) continue;
+			seen[c.idx] = true;
+			order_dfs_(seen, c.idx);
+		}
 	}
 }
 
@@ -474,57 +476,73 @@ bool Verifier::verify_epoch_() {
 		inv_[epochs_.back()[i]] = i;
 	}
 
-	logger << "construct program graph for epoch...";
 	bliss::Digraph dg(epochs_.back().size());
-	for (int x: epochs_.back()) {
-		Call& c = calls_[x];
-		for (int y: c.preds) {
-			Call& p = calls_[y];
-			if (p.epoch != c.epoch) continue;
-			dg.add_edge(inv_[p.idx], inv_[c.idx]);
-		}
-		for (int y: c.cnd_mplus) {
-			dg.add_edge(inv_[x], inv_[y]);
-			dg.add_edge(inv_[y], inv_[x]);
-		}
-	}
-	
-	logger << "check epoch cache...";
-	int h = dg.get_hash();
-	auto it = verified_hashes_.find(h);
-	if (it != verified_hashes_.end()) {
-		for (auto& epoch_info: it->second) {
-			if (dg.cmp(epoch_info.dg) == 0) {
-				logger << "found in cache";
-				epoch_info.reps += 1;
-				return true;
+	if (use_epoch_ || use_symmetry_) {
+		logger << "construct program graph for epoch...";
+		for (int x: epochs_.back()) {
+			Call& c = calls_[x];
+			for (int y: c.preds) {
+				Call& p = calls_[y];
+				if (p.epoch != c.epoch) continue;
+				dg.add_edge(inv_[p.idx], inv_[c.idx]);
+			}
+			for (int y: c.cnd_mplus) {
+				dg.add_edge(inv_[x], inv_[y]);
+				dg.add_edge(inv_[y], inv_[x]);
 			}
 		}
 	}
 
-	logger << "fresh epoch";
-	auto& v = verified_hashes_[h];
-	v.emplace_back(dg);
-	EpochInfo& epoch_info = v.back();
-	epoch_info.size = epochs_.back().size();
-	epoch_info.reps = 1;
+	int hash;
+	EpochInfo* epoch_info_p;
+	if (use_epoch_) {
+		
+		logger << "check epoch cache...";
+		hash = dg.get_hash();
+		auto it = verified_hashes_.find(hash);
+		if (it != verified_hashes_.end()) {
+			for (auto& epoch_info: it->second) {
+				if (dg.cmp(epoch_info.dg) == 0) {
+					logger << "found in cache";
+					epoch_info.reps += 1;
+					return true;
+				}
+			}
+		}
+
+		logger << "fresh epoch";
+		auto& v = verified_hashes_[hash];
+		v.emplace_back(dg);
+		epoch_info_p = &v.back();
+		epoch_info_p->size = epochs_.back().size();
+		epoch_info_p->reps = 1;
+	}
 
 	logger << "create SMT formula...";
 	encode_gen_();
-	bliss::Stats stats;
-	auto obj = std::make_pair((int)epochs_.size()-1, this);
-	logger << "detect and encode symmetry...";
-	aut_ctr_ = 0;
-	dg.find_automorphisms(stats, SolverHook, &obj);
-	logger << "symmetry generators: " << aut_ctr_;
-	epoch_info.syms = aut_ctr_;
+
+	if (use_symmetry_) {
+		bliss::Stats stats;
+		auto obj = std::make_pair((int)epochs_.size()-1, this);
+		logger << "detect and encode symmetry...";
+		aut_ctr_ = 0;
+		dg.find_automorphisms(stats, SolverHook, &obj);
+		logger << "symmetry generators: " << aut_ctr_;
+	}
+
+	if (use_epoch_) {
+		epoch_info_p->syms = aut_ctr_;
+	}
 
 	logger << "invoke SMT solver...";
 	ull tic = unix_time_ms();
 	bool sat;
 	sat = check_sat_();
 	logger << "solver stats:\n" << slv_.statistics();
-	epoch_info.solver_time = unix_time_ms() - tic;
+
+	if (use_epoch_) {
+		epoch_info_p->solver_time = unix_time_ms() - tic;
+	}
 
 	if (sat) {
 		logger << "formula is sat";
@@ -628,8 +646,10 @@ void Verifier::encode_aut_(int eid, unsigned n, const unsigned* aut) {
 				("aux_" + std::to_string(aut_ctr_) + "_" + std::to_string(i)).c_str()
 				));
 	}
-	slv_.add(!lhs[0] || rhs[0]);
-	slv_.add(aux[0] == (lhs[0] == rhs[0]));
+	if (0 < sz) {
+		slv_.add(!lhs[0] || rhs[0]);
+		slv_.add(aux[0] == (lhs[0] == rhs[0]));
+	}
 	for (int i = 1; i < sz; ++i) {
 		slv_.add(z3::implies(aux[i-1], !lhs[i] || rhs[i]));
 		if (i != sz-1) {
@@ -795,34 +815,55 @@ bool Verifier::check_feasibility() {
 }
 
 bool Verifier::verify() {
+	std::cout << "use_epoch_ = " << use_epoch_ << std::endl;
+	std::cout << "use_symmetry_ = " << use_symmetry_ << std::endl;
+
 	statf << "trace size: " << calls_.size() << std::endl;
 	logger << "compute m+...";
 	merge_barrs_();
 	basic_mplus_();
-	compute_ancestors_();
-	prune_mplus_by_ancs_();
-	prune_mplus_by_mo_();
-	prune_mplus_by_count_();
+
+	if (use_epoch_) {
+		compute_ancestors_();
+		prune_mplus_by_ancs_();
+		prune_mplus_by_mo_();
+		prune_mplus_by_count_();
+	}
 
 	compute_cnd_mplus_();
 	init_encoding_vars_();
-	logger << "epoch separation...";
 	pre_epoch_();
+
 	bool res;
-	while (true) {
-		bool nxt;
-		logger << "";
-		logger << "extract epoch...";
-		nxt = next_epoch_();
-		if (!nxt) {
-			logger << "epochs exhausted";
-			break;
+	if (use_epoch_) {
+		logger << "epoch decomposition...";
+
+		while (true) {
+			bool nxt;
+			logger << "";
+			logger << "extract epoch...";
+			nxt = next_epoch_();
+			if (!nxt) {
+				logger << "epochs exhausted";
+				break;
+			}
+
+			logger << "verify epoch...";
+			res = verify_epoch_();
+			logger << (res ? "deadlock free epoch" : "deadlock present in epoch");
+			if (!res) break;
+		}
+	} else {
+		logger << "epoch decomposition disabled.";
+
+		epochs_.emplace_back();
+		for (Call& c: calls_) {
+			epochs_.back().push_back(c.idx);
+			c.epoch = 0;
 		}
 
-		logger << "verify epoch...";
 		res = verify_epoch_();
 		logger << (res ? "deadlock free epoch" : "deadlock present in epoch");
-		if (!res) break;
 	}
 
 	//statf << "trace total epochs: " << (int)epochs_.size()-1 << std::endl;

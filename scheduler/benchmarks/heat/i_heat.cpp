@@ -299,7 +299,6 @@ void heatBoundary(heatGrid* grid, dataMPI* mympi)
     /*Receive left ghost cell column from left neighbor*/
     MPI_Recv  (&(grid->theta[mympi->start_y][mympi->start_x-1]),
             1, mympi->columntype, mympi->left, 123, mympi->cart, &status);
-    
     MPI_Waitall (3, reqs, stats);
 }
 
