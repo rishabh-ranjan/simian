@@ -1,0 +1,206 @@
+
+[Sat Sep 03 2022 15:26:33.782] argc: 6
+[Sat Sep 03 2022 15:26:33.782] argv[ 0 ]: simian
+[Sat Sep 03 2022 15:26:33.782] argv[ 1 ]: -n
+[Sat Sep 03 2022 15:26:33.782] argv[ 2 ]: 8
+[Sat Sep 03 2022 15:26:33.782] argv[ 3 ]: ./i_floyd
+[Sat Sep 03 2022 15:26:33.782] argv[ 4 ]: 8
+[Sat Sep 03 2022 15:26:33.782] argv[ 5 ]: p1
+[Sat Sep 03 2022 15:26:33.782] instantiate scheduler...
+[Sat Sep 03 2022 15:26:33.817] 
+
+[Sat Sep 03 2022 15:26:33.817] interleaving: 1
+[Sat Sep 03 2022 15:26:33.817] generate interleaving...
+[Sat Sep 03 2022 15:26:33.825] start trace verification...
+[Sat Sep 03 2022 15:26:33.825] generate Hermes constraints...
+[Sat Sep 03 2022 15:26:33.852] start Simian verifier...
+[Sat Sep 03 2022 15:26:33.852] compute m+...
+[Sat Sep 03 2022 15:26:33.853] epoch decomposition...
+[Sat Sep 03 2022 15:26:33.853] 
+[Sat Sep 03 2022 15:26:33.853] extract epoch...
+[Sat Sep 03 2022 15:26:33.853] verify epoch...
+[Sat Sep 03 2022 15:26:33.853] epoch: 0
+[Sat Sep 03 2022 15:26:33.853] epoch size: 1
+[Sat Sep 03 2022 15:26:33.853] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:33.853] check epoch cache...
+[Sat Sep 03 2022 15:26:33.853] fresh epoch
+[Sat Sep 03 2022 15:26:33.853] create SMT formula...
+[Sat Sep 03 2022 15:26:33.856] detect and encode symmetry...
+[Sat Sep 03 2022 15:26:33.856] symmetry generators: 0
+[Sat Sep 03 2022 15:26:33.856] invoke SMT solver...
+[Sat Sep 03 2022 15:26:33.860] solver stats:
+(:max-memory         8.69
+ :memory             8.39
+ :mk-bool-var        5
+ :num-allocs         3710692
+ :rlimit-count       68
+ :sat-mk-clause-2ary 1
+ :sat-mk-var         2
+ :sat-units          2)
+[Sat Sep 03 2022 15:26:33.860] formula is unsat
+[Sat Sep 03 2022 15:26:33.860] deadlock free epoch
+[Sat Sep 03 2022 15:26:33.860] 
+[Sat Sep 03 2022 15:26:33.860] extract epoch...
+[Sat Sep 03 2022 15:26:33.860] verify epoch...
+[Sat Sep 03 2022 15:26:33.860] epoch: 1
+[Sat Sep 03 2022 15:26:33.860] epoch size: 1
+[Sat Sep 03 2022 15:26:33.860] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:33.860] check epoch cache...
+[Sat Sep 03 2022 15:26:33.860] found in cache
+[Sat Sep 03 2022 15:26:33.860] deadlock free epoch
+[Sat Sep 03 2022 15:26:33.860] 
+[Sat Sep 03 2022 15:26:33.860] extract epoch...
+[Sat Sep 03 2022 15:26:33.860] verify epoch...
+[Sat Sep 03 2022 15:26:33.860] epoch: 2
+[Sat Sep 03 2022 15:26:33.860] epoch size: 1
+[Sat Sep 03 2022 15:26:33.860] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:33.860] check epoch cache...
+[Sat Sep 03 2022 15:26:33.860] found in cache
+[Sat Sep 03 2022 15:26:33.860] deadlock free epoch
+[Sat Sep 03 2022 15:26:33.860] 
+[Sat Sep 03 2022 15:26:33.860] extract epoch...
+[Sat Sep 03 2022 15:26:33.860] verify epoch...
+[Sat Sep 03 2022 15:26:33.860] epoch: 3
+[Sat Sep 03 2022 15:26:33.860] epoch size: 1
+[Sat Sep 03 2022 15:26:33.860] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:33.860] check epoch cache...
+[Sat Sep 03 2022 15:26:33.860] found in cache
+[Sat Sep 03 2022 15:26:33.860] deadlock free epoch
+[Sat Sep 03 2022 15:26:33.860] 
+[Sat Sep 03 2022 15:26:33.860] extract epoch...
+[Sat Sep 03 2022 15:26:33.860] verify epoch...
+[Sat Sep 03 2022 15:26:33.860] epoch: 4
+[Sat Sep 03 2022 15:26:33.860] epoch size: 1
+[Sat Sep 03 2022 15:26:33.860] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:33.860] check epoch cache...
+[Sat Sep 03 2022 15:26:33.860] found in cache
+[Sat Sep 03 2022 15:26:33.860] deadlock free epoch
+[Sat Sep 03 2022 15:26:33.860] 
+[Sat Sep 03 2022 15:26:33.860] extract epoch...
+[Sat Sep 03 2022 15:26:33.860] verify epoch...
+[Sat Sep 03 2022 15:26:33.860] epoch: 5
+[Sat Sep 03 2022 15:26:33.860] epoch size: 1
+[Sat Sep 03 2022 15:26:33.860] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:33.860] check epoch cache...
+[Sat Sep 03 2022 15:26:33.860] found in cache
+[Sat Sep 03 2022 15:26:33.860] deadlock free epoch
+[Sat Sep 03 2022 15:26:33.860] 
+[Sat Sep 03 2022 15:26:33.860] extract epoch...
+[Sat Sep 03 2022 15:26:33.860] verify epoch...
+[Sat Sep 03 2022 15:26:33.860] epoch: 6
+[Sat Sep 03 2022 15:26:33.860] epoch size: 1
+[Sat Sep 03 2022 15:26:33.860] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:33.860] check epoch cache...
+[Sat Sep 03 2022 15:26:33.860] found in cache
+[Sat Sep 03 2022 15:26:33.860] deadlock free epoch
+[Sat Sep 03 2022 15:26:33.860] 
+[Sat Sep 03 2022 15:26:33.860] extract epoch...
+[Sat Sep 03 2022 15:26:33.860] verify epoch...
+[Sat Sep 03 2022 15:26:33.860] epoch: 7
+[Sat Sep 03 2022 15:26:33.860] epoch size: 1
+[Sat Sep 03 2022 15:26:33.860] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:33.860] check epoch cache...
+[Sat Sep 03 2022 15:26:33.860] found in cache
+[Sat Sep 03 2022 15:26:33.860] deadlock free epoch
+[Sat Sep 03 2022 15:26:33.860] 
+[Sat Sep 03 2022 15:26:33.860] extract epoch...
+[Sat Sep 03 2022 15:26:33.860] verify epoch...
+[Sat Sep 03 2022 15:26:33.860] epoch: 8
+[Sat Sep 03 2022 15:26:33.860] epoch size: 1
+[Sat Sep 03 2022 15:26:33.860] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:33.860] check epoch cache...
+[Sat Sep 03 2022 15:26:33.860] found in cache
+[Sat Sep 03 2022 15:26:33.860] deadlock free epoch
+[Sat Sep 03 2022 15:26:33.860] 
+[Sat Sep 03 2022 15:26:33.860] extract epoch...
+[Sat Sep 03 2022 15:26:33.860] verify epoch...
+[Sat Sep 03 2022 15:26:33.860] epoch: 9
+[Sat Sep 03 2022 15:26:33.860] epoch size: 147
+[Sat Sep 03 2022 15:26:33.860] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:33.860] check epoch cache...
+[Sat Sep 03 2022 15:26:33.860] fresh epoch
+[Sat Sep 03 2022 15:26:33.860] create SMT formula...
+[Sat Sep 03 2022 15:26:33.867] detect and encode symmetry...
+[Sat Sep 03 2022 15:26:33.867] symmetry generators: 0
+[Sat Sep 03 2022 15:26:33.867] invoke SMT solver...
+[Sat Sep 03 2022 15:26:34.396] solver stats:
+(:added-eqs           124516
+ :arith-add-rows      471550
+ :arith-assert-diseq  276
+ :arith-assert-lower  12646
+ :arith-assert-upper  12973
+ :arith-bound-prop    3640
+ :arith-conflicts     42
+ :arith-eq-adapter    343
+ :arith-offset-eqs    48
+ :arith-pivots        9318
+ :binary-propagations 832298
+ :conflicts           11881
+ :decisions           24480
+ :del-clause          10723
+ :eliminated-vars     147
+ :max-memory          16.62
+ :memory              10.60
+ :minimized-lits      56570
+ :mk-bool-var         2099
+ :mk-clause           14936
+ :num-allocs          39540876
+ :num-checks          1
+ :pb-conflicts        249
+ :pb-predicates       98
+ :pb-propagations     23789
+ :pb-resolves         249
+ :propagations        1320452
+ :restarts            80
+ :rlimit-count        30127304)
+[Sat Sep 03 2022 15:26:34.396] formula is unsat
+[Sat Sep 03 2022 15:26:34.396] deadlock free epoch
+[Sat Sep 03 2022 15:26:34.396] 
+[Sat Sep 03 2022 15:26:34.396] extract epoch...
+[Sat Sep 03 2022 15:26:34.396] verify epoch...
+[Sat Sep 03 2022 15:26:34.396] epoch: 10
+[Sat Sep 03 2022 15:26:34.396] epoch size: 20
+[Sat Sep 03 2022 15:26:34.396] construct program graph for epoch...
+[Sat Sep 03 2022 15:26:34.396] check epoch cache...
+[Sat Sep 03 2022 15:26:34.396] fresh epoch
+[Sat Sep 03 2022 15:26:34.396] create SMT formula...
+[Sat Sep 03 2022 15:26:34.400] detect and encode symmetry...
+[Sat Sep 03 2022 15:26:34.400] symmetry generators: 6
+[Sat Sep 03 2022 15:26:34.400] invoke SMT solver...
+[Sat Sep 03 2022 15:26:34.410] solver stats:
+(:added-eqs           219
+ :arith-add-rows      205
+ :arith-assert-lower  17
+ :arith-assert-upper  29
+ :arith-bound-prop    94
+ :arith-eq-adapter    49
+ :arith-offset-eqs    3
+ :arith-pivots        22
+ :binary-propagations 960
+ :conflicts           19
+ :decisions           103
+ :eliminated-vars     98
+ :max-memory          16.62
+ :memory              10.42
+ :minimized-lits      7
+ :mk-bool-var         375
+ :mk-clause           653
+ :num-allocs          63345734
+ :num-checks          1
+ :pb-conflicts        5
+ :pb-predicates       14
+ :pb-propagations     52
+ :pb-resolves         4
+ :propagations        1746
+ :rlimit-count        30178719)
+[Sat Sep 03 2022 15:26:34.410] formula is unsat
+[Sat Sep 03 2022 15:26:34.410] deadlock free epoch
+[Sat Sep 03 2022 15:26:34.410] 
+[Sat Sep 03 2022 15:26:34.410] extract epoch...
+[Sat Sep 03 2022 15:26:34.410] epochs exhausted
+[Sat Sep 03 2022 15:26:34.410] process graph written in: runlogs/8.floyd.8_p1/procs.dot
+[Sat Sep 03 2022 15:26:34.410] epoch graph written in: runlogs/8.floyd.8_p1/epochs.dot
+[Sat Sep 03 2022 15:26:34.410] Simian verfication result: deadlock free
+[Sat Sep 03 2022 15:26:34.410] change conditionals...
+[Sat Sep 03 2022 15:26:34.410] path conditionals exhausted
+[Sat Sep 03 2022 15:26:34.410] verdict: deadlock free

@@ -11,4 +11,4 @@
 # See LICENSE for licensing information
 #
 
-/usr/bin/java -jar "/usr/local/bin/ispui.jar" $* 
+ -jar "/usr/local/bin/ispui.jar" $* 

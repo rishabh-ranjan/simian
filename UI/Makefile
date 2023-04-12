@@ -86,8 +86,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-unknown-linux-gnu
-host_triplet = x86_64-unknown-linux-gnu
+build_triplet = x86_64-pc-linux-gnu
+host_triplet = x86_64-pc-linux-gnu
 subdir = UI
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libopts.m4 \
@@ -155,28 +155,28 @@ am__java_sources = $(src_JAVA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 am__DIST_COMMON = $(srcdir)/Makefile.in
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = aclocal-1.16
+ACLOCAL = ${SHELL} /home/rishab/ws/simian/missing aclocal-1.16
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
-AUTOCONF = autoconf
-AUTOHEADER = autoheader
-AUTOMAKE = automake-1.16
+AUTOCONF = ${SHELL} /home/rishab/ws/simian/missing autoconf
+AUTOHEADER = ${SHELL} /home/rishab/ws/simian/missing autoheader
+AUTOMAKE = ${SHELL} /home/rishab/ws/simian/missing automake-1.16
 AWK = mawk
 BINDIR = /usr/local/bin
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2 -DFIB -DCONFIG_OPTIONAL_AMPLE_SET_FIX
+CFLAGS = -g -O2 -DFIB
 CPP = gcc -E
 CPPFLAGS = 
 CXX = g++
 CXXCPP = g++ -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2 -DFIB -DCONFIG_OPTIONAL_AMPLE_SET_FIX
+CXXFLAGS = -g -O2 -DFIB
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = false
+DLLTOOL = dlltool
 DSYMUTIL = 
 DUMPBIN = 
 ECHO_C = 
@@ -193,10 +193,10 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-JAR = jar
-JAVA = /usr/bin/java
-JAVAC = javac
-LD = /usr/bin/ld -m elf_x86_64
+JAR = 
+JAVA = 
+JAVAC = 
+LD = /home/linuxbrew/.linuxbrew/bin/ld -m elf_x86_64
 LDFLAGS = 
 LIBDIR = /usr/local/lib
 LIBOBJS = 
@@ -211,7 +211,7 @@ LN_S = ln -s
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
 MAINT = #
-MAKEINFO = makeinfo
+MAKEINFO = ${SHELL} /home/rishab/ws/simian/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /usr/bin/mkdir -p
 MPICC = /usr/bin/mpicc
@@ -219,7 +219,7 @@ MPICXX = /usr/bin/mpicxx
 MPIDIR = /usr
 MPI_BINDIR = /usr/bin
 MPI_INCDIR = /usr/include/x86_64-linux-gnu/mpich/
-NM = /usr/bin/nm -B
+NM = /home/linuxbrew/.linuxbrew/bin/nm -B
 NMEDIT = 
 OBJDUMP = objdump
 OBJEXT = o
@@ -253,29 +253,29 @@ am__quote =
 am__tar = $${TAR-tar} chof - "$$tardir"
 am__untar = $${TAR-tar} xf -
 bindir = ${exec_prefix}/bin
-build = x86_64-unknown-linux-gnu
+build = x86_64-pc-linux-gnu
 build_alias = 
 build_cpu = x86_64
 build_os = linux-gnu
-build_vendor = unknown
+build_vendor = pc
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-unknown-linux-gnu
+host = x86_64-pc-linux-gnu
 host_alias = 
 host_cpu = x86_64
 host_os = linux-gnu
-host_vendor = unknown
+host_vendor = pc
 htmldir = ${docdir}
 include_ispdir = /usr/local/include/isp
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
 install_sh = ${SHELL} /home/rishab/ws/simian/install-sh
 jar = jar
-java = /usr/bin/java
+java = java
 javac = javac
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
@@ -588,10 +588,10 @@ uninstall-am: uninstall-binSCRIPTS uninstall-srcJAVA
 
 ispui.jar: classsrc.stamp
 	-rm -rf org com ispui.jar
-	jar xf lib/log4j-1.2.15.jar org
-	jar xf lib/syntax.jar com
-	jar xf lib/jgraph.jar org
-	jar cfm ispui.jar manifest.txt Data/*.class Graph/*.class UI/*.class Parser/*.class org com
+	 xf lib/log4j-1.2.15.jar org
+	 xf lib/syntax.jar com
+	 xf lib/jgraph.jar org
+	 cfm ispui.jar manifest.txt Data/*.class Graph/*.class UI/*.class Parser/*.class org com
 	-rm -rf org com
 
 install-srcJAVA:

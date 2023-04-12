@@ -1,0 +1,4 @@
+name: floyd
+nprocs: 16
+args: 16 m1 
+trace size: 736

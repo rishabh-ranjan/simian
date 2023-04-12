@@ -1,0 +1,15 @@
+name: integrate_static
+nprocs: 16
+args: 
+trace size: 60
+deadlock: no
+epochs: (30,14,1) (2,1,15) 
+total epochs: 16
+unique epochs: 2
+repeated epochs: 14
+total generators: 15
+total time: 1269
+scheduler time: 1182
+processing time: 36
+solver time: 38
+misc time: 13

@@ -815,9 +815,6 @@ bool Verifier::check_feasibility() {
 }
 
 bool Verifier::verify() {
-	std::cout << "use_epoch_ = " << use_epoch_ << std::endl;
-	std::cout << "use_symmetry_ = " << use_symmetry_ << std::endl;
-
 	statf << "trace size: " << calls_.size() << std::endl;
 	logger << "compute m+...";
 	merge_barrs_();

@@ -1,0 +1,5 @@
+name	nprocs	args	trace size	deadlock	epochs	total epochs	unique epochs	repeated epochs	total generators	total time	scheduler time	processing time	solver time	misc time	
+ floyd	 16	 8 p2 	 368	 no	 (352,0,1) (1,0,16) 	 17	 2	 15	 0	 2108	 1106	 89	 912	 1	
+ floyd	 32	 8 p2 	 752	 no	 (720,0,1) (1,0,32) 	 33	 2	 31	 0	 5619	 1546	 252	 3818	 3	
+ floyd	 64	 8 p2 	 1520	 no	 (1456,0,1) (1,0,64) 	 65	 2	 63	 0	 32261	 2890	 759	 28605	 7	
+ floyd	 8	 8 p2 	 176	 no	 (168,0,1) (1,0,8) 	 9	 2	 7	 0	 249	 38	 38	 173	 0	

@@ -1,0 +1,15 @@
+name: adder
+nprocs: 4
+args: 
+trace size: 12
+deadlock: no
+epochs: (6,2,1) (2,1,3) 
+total epochs: 4
+unique epochs: 2
+repeated epochs: 2
+total generators: 3
+total time: 59
+scheduler time: 37
+processing time: 13
+solver time: 8
+misc time: 1

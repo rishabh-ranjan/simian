@@ -1,0 +1,7 @@
+
+[Wed Aug 31 2022 00:53:17.078] argc: 4
+[Wed Aug 31 2022 00:53:17.078] argv[ 0 ]: simian
+[Wed Aug 31 2022 00:53:17.078] argv[ 1 ]: -n
+[Wed Aug 31 2022 00:53:17.078] argv[ 2 ]: 8
+[Wed Aug 31 2022 00:53:17.078] argv[ 3 ]: ./integrate_static
+[Wed Aug 31 2022 00:53:17.078] instantiate scheduler...

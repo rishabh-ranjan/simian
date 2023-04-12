@@ -1,0 +1,104 @@
+
+[Fri Aug 26 2022 14:19:30.858] argc: 4
+[Fri Aug 26 2022 14:19:30.859] argv[ 0 ]: simian
+[Fri Aug 26 2022 14:19:30.859] argv[ 1 ]: -n
+[Fri Aug 26 2022 14:19:30.859] argv[ 2 ]: 4
+[Fri Aug 26 2022 14:19:30.859] argv[ 3 ]: ./i_adder
+[Fri Aug 26 2022 14:19:30.859] instantiate scheduler...
+[Fri Aug 26 2022 14:19:30.894] 
+
+[Fri Aug 26 2022 14:19:30.894] interleaving: 1
+[Fri Aug 26 2022 14:19:30.894] generate interleaving...
+[Fri Aug 26 2022 14:19:30.896] start trace verification...
+[Fri Aug 26 2022 14:19:30.896] generate Hermes constraints...
+[Fri Aug 26 2022 14:19:30.901] start Simian verifier...
+[Fri Aug 26 2022 14:19:30.901] compute m+...
+[Fri Aug 26 2022 14:19:30.901] epoch decomposition...
+[Fri Aug 26 2022 14:19:30.901] 
+[Fri Aug 26 2022 14:19:30.901] extract epoch...
+[Fri Aug 26 2022 14:19:30.901] verify epoch...
+[Fri Aug 26 2022 14:19:30.901] epoch: 0
+[Fri Aug 26 2022 14:19:30.901] epoch size: 2
+[Fri Aug 26 2022 14:19:30.901] construct program graph for epoch...
+[Fri Aug 26 2022 14:19:30.901] check epoch cache...
+[Fri Aug 26 2022 14:19:30.901] fresh epoch
+[Fri Aug 26 2022 14:19:30.901] create SMT formula...
+[Fri Aug 26 2022 14:19:30.905] detect and encode symmetry...
+[Fri Aug 26 2022 14:19:30.905] symmetry generators: 1
+[Fri Aug 26 2022 14:19:30.905] invoke SMT solver...
+[Fri Aug 26 2022 14:19:30.908] solver stats:
+(:eliminated-vars 4
+ :max-memory      6.16
+ :memory          5.86
+ :mk-bool-var     5
+ :num-allocs      2281405
+ :rlimit-count    683)
+[Fri Aug 26 2022 14:19:30.908] formula is unsat
+[Fri Aug 26 2022 14:19:30.908] deadlock free epoch
+[Fri Aug 26 2022 14:19:30.908] 
+[Fri Aug 26 2022 14:19:30.908] extract epoch...
+[Fri Aug 26 2022 14:19:30.908] verify epoch...
+[Fri Aug 26 2022 14:19:30.908] epoch: 1
+[Fri Aug 26 2022 14:19:30.908] epoch size: 2
+[Fri Aug 26 2022 14:19:30.908] construct program graph for epoch...
+[Fri Aug 26 2022 14:19:30.908] check epoch cache...
+[Fri Aug 26 2022 14:19:30.908] found in cache
+[Fri Aug 26 2022 14:19:30.908] deadlock free epoch
+[Fri Aug 26 2022 14:19:30.908] 
+[Fri Aug 26 2022 14:19:30.908] extract epoch...
+[Fri Aug 26 2022 14:19:30.908] verify epoch...
+[Fri Aug 26 2022 14:19:30.908] epoch: 2
+[Fri Aug 26 2022 14:19:30.908] epoch size: 2
+[Fri Aug 26 2022 14:19:30.908] construct program graph for epoch...
+[Fri Aug 26 2022 14:19:30.908] check epoch cache...
+[Fri Aug 26 2022 14:19:30.908] found in cache
+[Fri Aug 26 2022 14:19:30.908] deadlock free epoch
+[Fri Aug 26 2022 14:19:30.908] 
+[Fri Aug 26 2022 14:19:30.908] extract epoch...
+[Fri Aug 26 2022 14:19:30.908] verify epoch...
+[Fri Aug 26 2022 14:19:30.908] epoch: 3
+[Fri Aug 26 2022 14:19:30.908] epoch size: 6
+[Fri Aug 26 2022 14:19:30.908] construct program graph for epoch...
+[Fri Aug 26 2022 14:19:30.908] check epoch cache...
+[Fri Aug 26 2022 14:19:30.908] fresh epoch
+[Fri Aug 26 2022 14:19:30.908] create SMT formula...
+[Fri Aug 26 2022 14:19:30.912] detect and encode symmetry...
+[Fri Aug 26 2022 14:19:30.912] symmetry generators: 2
+[Fri Aug 26 2022 14:19:30.912] invoke SMT solver...
+[Fri Aug 26 2022 14:19:30.917] solver stats:
+(:added-eqs           33
+ :arith-add-rows      8
+ :arith-assert-lower  4
+ :arith-assert-upper  6
+ :arith-bound-prop    4
+ :arith-eq-adapter    9
+ :arith-offset-eqs    3
+ :arith-pivots        3
+ :binary-propagations 146
+ :conflicts           15
+ :decisions           22
+ :eliminated-vars     16
+ :max-memory          6.41
+ :memory              5.93
+ :minimized-lits      2
+ :mk-bool-var         75
+ :mk-clause           95
+ :num-allocs          8449362
+ :num-checks          1
+ :pb-conflicts        1
+ :pb-predicates       6
+ :pb-propagations     9
+ :pb-resolves         1
+ :propagations        234
+ :rlimit-count        8915)
+[Fri Aug 26 2022 14:19:30.917] formula is unsat
+[Fri Aug 26 2022 14:19:30.917] deadlock free epoch
+[Fri Aug 26 2022 14:19:30.917] 
+[Fri Aug 26 2022 14:19:30.917] extract epoch...
+[Fri Aug 26 2022 14:19:30.917] epochs exhausted
+[Fri Aug 26 2022 14:19:30.917] process graph written in: runlogs/4.adder./procs.dot
+[Fri Aug 26 2022 14:19:30.917] epoch graph written in: runlogs/4.adder./epochs.dot
+[Fri Aug 26 2022 14:19:30.917] Simian verfication result: deadlock free
+[Fri Aug 26 2022 14:19:30.917] change conditionals...
+[Fri Aug 26 2022 14:19:30.917] path conditionals exhausted
+[Fri Aug 26 2022 14:19:30.917] verdict: deadlock free

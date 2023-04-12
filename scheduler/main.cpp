@@ -81,8 +81,14 @@ int main (int argc, char **argv) {
 		}
 	}
 	dirname = nprocs + "." + name + "." + args;
-	//dirname = std::to_string(start_time);
-	mkdir(("runlogs/" + dirname).c_str(), 0755);
+
+	struct stat st = {0};
+	if (stat("runlogs/", &st) == -1) {
+	    mkdir("runlogs/", 0755);
+	}
+	if (stat(("runlogs/" + dirname).c_str(), &st) == -1) {
+		mkdir(("runlogs/" + dirname).c_str(), 0755);
+	}
 	logger.open("runlogs/" + dirname + "/log.txt");
 	statf.open("runlogs/" + dirname + "/stats.txt");
 
